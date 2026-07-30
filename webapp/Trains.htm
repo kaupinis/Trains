@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>eightolives Trains - a transit app</title>
+<meta name=viewport content="width=device-width, initial-scale=1">
+<meta name="keywords" content="transit app, train schedules, MBTA, Metro North, NYC subway, NJ Transit, CT Rail, Metra, CTA, BART, public transportation schedules, talking train schedules">
+<meta name="description" content="See and hear train, subway and bus schedules, status for MBTA, Metro North, LIRR, MTA subways, Chicago Transit, Metra, NJ Transit, CT rail, BART and others. Plan trips, view maps.">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#7388a5">
+
+<link rel="shortcut icon" href="../../favicon.ico">
+<link rel="apple-touch-icon" sizes="512x512" href="images/eotrains512w.png" >
+<link rel="apple-touch-icon" sizes="192x192" href="images/eotrains192w.png" >
+<link rel="apple-touch-icon" sizes="180x180" href="images/eotrains180w.png" >
+<link rel="apple-touch-icon" sizes="96x96" href="images/eotrains96w.png" >
+<link rel="icon" type="image/png" href="../../images/eofav.png">
+<link rel="manifest" href="TrainsWebmanifest.json">
+<link rel="canonical" href="https://www.eightolives.com/docs/Trains/Trains.htm">
+<!-- stylesheets -->
+<link rel="stylesheet" href="css/t.css">
+<script src="js/eo_palettes.js"></script>
+
+</head>
+
+<body class="container">
+<noscript><br><br>Note: eightolives web pages use Javascript which is not enabled.
+</noscript>
+<button id="sb3" class="sndbuttonR" style="height:100px;top:10vh;visibility : visible;" onClick="snd(3)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAcCAYAAAAJKR1YAAAFKUlEQVRIib2WW2wUVRjHPxACCGrlYhABQcAH4wuYGHkwAUXkQdGYEAmIkCjwgCHxSU00rpiIXCTRRBLkgQDRmBXkEuSiJguVoCQDTYG2lC1durvd7c7u3M6c+5lzxgc6sKmARVv+b/P/vpnvN+fynQMwQLKs0v3fHD06oq9fssP1kTYkZCI1ULX6JUT4YkTEYdsl6+r9TCYzDGG2McDC7argl+4ZkOOET9V8uj+KNC27eA8ADEliubI3jVD5p1DRvkIQjL1nUNlsdkRH0V2rIqMIV/vqY0zKd4TSGHO+cFCKL/n48HQAgLYiGnet7M0/ny1PSGIFO3xPG2OudNXW3/SCWVLpc5TLr5ube0YPKMy3h87NPH2xuB8AwPbIbDdkxR4H/5ixSuOTnJ4a+VlrHZ49WxyXeC7imx3E2ioVf8aAwcyblxrWUfKtzu7gYOK1d7tLMVMqoHz9knT6PgAAx6FTIm0UomJLkoeIeF2oKPQxe3HAgP5qLW+I4zi+UvD21/suYt+5iLeVSt7jiVfz6fceYp1r1uwYDgBw+Zo/XWvTSpj6NJvN/qNF3LU+2HF6KuWKxnFs+gIhxBdTrsKSg1+G3h1WrIbzTRzLnip5JclTKjrGhTriuu5D/S6cPlMYdeZCaVl7V+3t1q7aitau2or2nLu0sSm/zZhY3QroRHPHI0TICz7mm5K/z2adB4WMXMzFpiRPRtF2wkVrGIYT+ta9rVpy9sTOUmBTrnBIJQqpRISr4FrJp9qY+FZAAAAqMscYV7/Ztj0GAKBQKIyiTDZyER1PcjBTHzIZ2YSQSf0GupyvTurxiIj7qOKS2NwBKGRyp5Dqkud5DddHKDsCM7FLa3MuyUFErsZMcofSKf0Gar1WfbTHIawvUM+/ACmltwgZdfq+/zAAgGVZw4VQW0wcX0pnWsYAAFRcvDzSRrM4njboQDrWm7mMcvVAXsg+cxFt3nWgqQEAoKPbf9NBTFV8/sTdAdVIGMexNiZWvQtZlR0c3WkNhUxuF1K3JVNmWdZwLtVWY+JLJ5qbRwMAlGp4BRVKM8am9htoW/rMqJ1HLr61v7Fj1b5T7Sv3nWpfmT51ZVn6ZParSBt5OyCh1CHKZGO1Wn0AoHcNEbFba2PdGEWt13EZYUrp5H4D3U67j7bMVpEObwWUSmfGCKkswuT2XC43EuD6LiNMnuYqOpbkESY2UK4KGOOJ/xsIAKBUQ3vNLTp11QvnI8KrZSdckkqlhgIAeJ7XIJR2KRMbkzwhor1UKAshNK7vt/+Ttv5gjQ8ov9LR7R2s933EvwyJ6LbtYGbidRT9F4yJle3gRQAAqV2ZkUqZRiaivUmvGhBduFpZ0JStHEieWzrt5xHmVR+zjZne6QIAcBD9CTHR8UzvWVb1yZxI62JI+Np07yE8UBqS/r1tLgBAwQ4W+aFwQir/yOdvXiuyeX+GNkbUEL0xXT5hq4WMAkrlswMJcwMKAKCzx33V9mj6aiGYVR8sV/EvUWSCptz1FrArkxnpYbbHRSyTz1f7f2zcrVKp1FDLsobXexWPfBLHcdxZ8t9NPCegzwkVlSmV70PdfXvwFF8v0nLV/khprQIsdt+EzgwLmfhcqKjgEzJn0FmacrmGmkffcBE9qY2RJSfcWR8vVtDcIOQ2YeILuBej4/t8gZC6JcDifN5Gq+pjjkMnM66OC6ma265Wnxx0GACAlpbC2Na8+3QqlRlW77cXao8FWOxWkcYeEq/dE5jbyff5QibVr4hKVKri5f1972/iyGJhU9vgDAAAAABJRU5ErkJggg==" id="sb3img"  width='36' height='28' alt="Enable Sound / Status/Yes" title="Status / Yes"><span data-dxt="Stat">Stat</span><br><span style="color:black" data-dxt="Yes">Yes</span></button>
+<button id="sb5" class="sndbuttonR" style="height:60px;top:45vh;visibility : hidden;" onClick="snd(5)" title="Menu / Back / Help"><span data-dxt="Menu">Menu</span><br><span style="color:black" data-dxt="Back">Back</span><br><span style="color:black;font-size:6pt" data-dxt="QuikHelp">QuikHelp</span></button>
+<!--<button id="sb3" class="sndbuttonR" style="top:60vh;" onClick="sndbut('e')">&epsilon;</button> -->
+<button id="sb4" class="sndbuttonR" style="height:100px;top:70vh;visibility : hidden;" onClick="snd2(4)" title="Alt / Search / Monitor"><span data-dxt="Alt">Alt</span><br><span style="color:black" data-dxt="Search">Search</span><br><span style="color:black;font-size:6pt" data-dxt="Monitor">Monitor</span><br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAPElEQVQ4jWNgGAUjHPz///8/1Q0hy1BChmDjwwBVDCXKQGyaKDKQHG9TzTCCBpJqODogymCSXDEKBjcAAC/ik20s8WvOAAAAAElFTkSuQmCC" id="sb4img"  width='20' height='20' alt="Enable Speech Recognition"></button>
+<button id="sb1" class="sndbuttonL" style="height:100px; top:10vh;visibility : hidden;" onClick="snd(1)" title="List / No">List<br><span style="color:black" data-dxt="No">No</span><br><span style="color:black" data-dxt="Next">Next</span></button>
+<button id="sb2" class="sndbuttonL" style="height:100px; top:70vh;visibility : hidden;" onClick="snd(2)" title="Quiet / Reset"><span data-dxt="Quiet">Quiet</span><br><span style="color:black" data-dxt="Reset">Reset</span></button>
+
+<header>
+<div class="title" style="width:99%"><div class="tt" style="float:left;left:5px;"><span class="ttt">m</span></div>
+<button class ="buttonT" style="float:left; height:45px; padding: 0px; margin:0px 0px  0px 0px;background-color:white" onClick="menu('Nav')" accesskey="m" title="Menu">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAARklEQVRYhe3SsQkAQAgEweu/Zjm/gg8EUYNdMDJwApXLCQCA38J22xHbGRE1gKT2AQCgBJgKwN0fAABgKgB3fwAAgKkAAHiD8kNX950kPAAAAABJRU5ErkJggg==" alt="Menu"  class="logo" width='32' height='32'>
+</button>
+<button  id="fcbut" class ="buttonT" style="float:left; height:45px; margin:0px 10px  0px 10px;background-color:white" onClick="showPlanMenu()" accesskey="f" title="Find Connections">
+<img src="data:image/png;base64,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" alt="Find Connections" width="20">
+</button>
+<button  id="mbut" class ="buttonT" style="font-size:8pt;float:left; height:45px; background-color:white" onClick="selectFromMap1()" accesskey="q"  title="View Map" data-dxt="Map">Map</button>
+<button class ="buttonT" style="float:left; height:45px;  margin:0px 10px  0px 8px;background-color:white" onClick="showStopSearch()" accesskey="s" title="Search for Stop">
+<img src= "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAKCAYAAABrGwT5AAAAYUlEQVQokaWRIRKAMBAD11CDQHSm/KVv4f8vqF8EOI62A5FJNicOb0EVEA6p1RlxgTyDwAs6Ry8cwNv2A97377AqOQfg0wthVUqRlGRZZF3nL6u21uJCZ2D8j87AFPw2cAJpThYrrc851AAAAABJRU5ErkJggg==" alt="Search for Stop"></button>
+<button  id="bbut" class ="buttonT" style="font-size:8pt;float:left; height:45px; background-color:white" onClick="findBusNumber()" accesskey="b"  title="Find Bus" data-dxt="Bus">Bus</button>
+
+<div id="sph" style="float:left;"></div>
+<a href="javascript:menu('Help')" accesskey="h" style="color: var(--Ccolor);"  title="Help Menu"><div class="tt"><span class="ttt">h</span></div><span data-dxt="eightolivesTrains">eightolives Trains</span>
+<img class="imgval" src="data:image/png;base64,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" alt="help" width="25">
+
+
+</a></div>
+</header>
+<main> 
+<div id="oll" class="timplc" style="font-size:20px;float:left;z-index:0; visibility:visible;color:var(--Ccolor)" data-dxt="Offline">Offline</div>
+<!--<div id="advlb" class="timplc" style="width:728px; height:90px; background-color:#ffff99; margin:auto; display: none;"></div> -->
+<div id="tm" class="timpla"><br>12:00</div>
+<div id="plc" class="timplcc" style="font-size:40px;" ></div>
+<div id="plc2" class="timplc"></div>
+<!--<div id="advml" class="timplc" style="width:320px; height:50px; background-color:#ffff99; margin:auto; display: none;"></div> -->
+<div id="tg" class="timpld" >
+<div id="aa"  style="color:var(--Btext);background-color:var(--main-background);font-size:12pt;text-align:left;" > </div>
+<div id="cap" style="color:blue;font-size:20px;"></div><br><div class="tt"><span class="ttt">z</span></div>
+<div id="pinz" style="overflow:scroll; margin:10px;width:95%; height:500px;color:black;font-size:12pt;">Loading...
+ </div>
+<div id="pt"></div>
+</div>
+<div>
+<details open id="lmdt"><summary style="color:var(--Btext);" data-dxt="ScheduleLastModified">Schedule Last Modified</summary>
+<div id="LMDA" style="color:var(--Btext);"></div>
+</details>
+</div>
+<br><br>
+<div style="float:right;"><a href="javascript:window.scrollTo(0,0)" data-dxt="Top">Top</a></div>
+<div>
+<details open id="rptdet"><summary style="color:var(--Btext);" data-dxt="Report">Report</summary>
+<br>
+<div id="rpt" style="width:95%;">
+<fieldset style="color:var(--Btext);background-color:var(--main-background);">
+<div class="tt"><span class="ttt">r</span></div><textarea id="ta" cols = "45" rows="10" style="width:99%" accesskey="r"> </textarea><br>
+<br><button class ="buttonT" onClick="clearReport()" accesskey="c" data-dxt="Clear">Clear</button>&nbsp;&nbsp;
+<button class ="buttonT" onClick="saveReport()" data-dxt="Save" accesskey="v">Save</button>&nbsp;&nbsp;
+
+</fieldset>
+</div>
+</details>
+</div>
+<div>
+<details open style="color:var(--Btext);"><summary data-dxt="GeolocationData">Geolocation Data</summary>
+<table><tr><td style="text-align:right;color:var(--Btext);">
+<label class="label2" for="XPOS" data-dxt="LAT">LAT</label>
+</td><td> <input type="text" size=16 style="font-size:10pt;" id="XPOS" accesskey="y"></td></tr>
+<tr><td style="text-align:right;color:var(--Btext);"><label class="label2" for="YPOS" data-dxt="LONG">LONG</label></td><td>
+<input type="text" size=16 style="font-size:10pt;" id="YPOS" accesskey="x"></td></tr>
+<tr><td style="text-align:right;color:var(--Btext);"><label class="label2" for="ZPOS" data-dxt="ALT">ALT (m) </label> </td><td>
+<input type="text" size=16 style="font-size:10pt;" id="ZPOS" accesskey="z"></td></tr>
+<tr><td style="text-align:right;color:var(--Btext);"><label class="label2" for="POSA" data-dxt="ACCURACY">ACCURACY (m)</label> </td><td>
+<input type="text" size=16 style="font-size:10pt;" id="POSA" accesskey="a"></td></tr>
+<tr><td style="text-align:right;color:var(--Btext);"><label class="label2" for="VEL" data-dxt="VELOCITYmihr">VELOCITY (mi/hr)</label></td><td>
+<input type="text" size=16 style="font-size:10pt;" id="VEL" accesskey="v"></td></tr>
+</table>
+</details>
+<div style="float:right;"><a href="javascript:window.scrollTo(0,0)" data-dxt="Top">Top</a></div>
+</div>
+<div>
+<br>
+<details open style="color:var(--Btext);"><summary data-dxt="QuickHints">Quick Hints</summary>
+<p data-dxt="@1">Eightolives' Trains displays the schedules of many trains, subways, and buses. Real-time estimates (in blue) are provided when available. You can view schedule by stop, schedule by trip or schedules by bus route. A map view lets you track a trip or select a nearby stop. You can find itineraries for getting from point A to point B. Audio Mode can assist by talking you through all operations using 5 floating buttons.
+</p>
+<p data-dxt="@2">
+Clicking most items will display popup menus with more options. Click the stop location under the time display to change stops or see other platforms at this stop. Stop locations with an * indicate there are other platforms / carriers  at this stop. Click any trip listing in the timetable to see the trip schedule.
+</p>
+<p>
+
+<a href="quikhints.htm" target="h" style="color:var(--Btext);" data-dxt="@3">Click for more Quick Hints</a>
+</p>
+</details>
+<div style="float:right;"><a href="javascript:window.scrollTo(0,0)" data-dxt="Top">Top</a></div>
+</div>
+<div> <!-- menus -->
+
+<div id="Welcome" style="visibility : visible; color:black;position : fixed; top : 50%; left : 50%; width:250px; height:250px; margin-top: -50px; margin-left: -125px; background-color:#ffff00; text-align: center;line-height: 1;border-radius:30px;" ><br><i data-dxt="Welcometo">Welcome to</i><br><span style="font-weight: bold" data-dxt="eightolivesTrains">eightolives Trains</span> <br><br><span style="font-size:10pt;" data-dxt="@14">Click on location or entries for menus and navigation.</span><br><span style="font-weight: bold" data-dxt="@15">Have a safe trip!</span><br><span style="font-size:10pt;" data-dxt="@16">Cookies help deliver our services. By using Trains, you agree to our use of cookies. <a href="Trains_cookies.htm" target="g" style="color:blue" data-dxt="@17">Learn how we use cookies.</a></span><br><br><button onClick="closeWelcome()" data-dxt="GotIt">Got It</button>
+</div>
+
+<div id="Welcome3" style="visibility : hidden; color:black;position : fixed; top : 50%; left : 50%; width:250px; height:250px; margin-top: -50px; margin-left: -125px; background-color:#ffff00; text-align: center;border-radius:30px;" ><br><span style="font-weight: bold">eightolives Trains</span> <br><br><span style="font-size:12pt;">To find transit options near you, allow Trains to access your geolocation data when requested.</span><br><br><button onClick="closeWelcome3()">Got it</button>
+</div>
+
+<div id="DMap" style="visibility : hidden; position : absolute; top : 50pt; left : 20pt; width:85%; height:85%; background-color:grey; border-style:solid; border-width:5px; border-color:black;font-size:10pt; " >
+<button style="z-index:15; float:left;" onClick="stopSPGY()" data-dxt="Pause">Pause</button>
+<button id="bdm" style="z-index:15; float:right;" onClick="showDMap(false)">X</button>
+<div style="position:fixed; top: 0px; left:0px;">
+<div id="spydiv"></div>
+</div>
+
+<div style=" overflow:scroll; height:95%; width: 99%;">
+<canvas  id="Canvas0" width="1200" height="1000" style=" z-index:12;" > </canvas>
+</div>
+</div>
+
+
+<div id="KMap" style="visibility : hidden; position : absolute; top : 50pt; left : 20pt; width:80%; height:85%; background-color:white; border-style:solid; border-width:5px; border-color:black;font-size:10pt;overflow:scroll;" >
+
+<div style="float:right; max-width:100px;">
+<div id="cps" style="width:31px; height:31px;border-color:black;font-size:10pt;background-color:blue;float:left;">
+<div style="position: relative;"><img id="needle" style="z-index:1; padding: 0px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfCAYAAAAfrhY5AAAA6ElEQVRIie2Quw2EMBBEiS69YpzSAaIJqjJVQBG0QAOOSCAkZC7grOOzawP+XOKRVkIg5o1elqWkXAym6Y2+f/0HrhQwjgCAOMBtpASaBseEhQLAsgB5DhTF+kwkDBgAlAKEWO+r3vsAtlXKH5xQ72UA2aaVa7hB/WM427ZVfkH9owFs01a5vraNAD8qD6GebaGU+1bPNlDKfasn/+aUR1FvUm5RfwtMwuvaDmfUu8FtyvWVJan+Nnw34IpyRv0j8A4+DEDXna+qzu98wXcDqAhh/OwEtg4wwL2AjSPmOTzUNiQKMCXFNR/TEoQ28JAhOAAAAABJRU5ErkJggg==" alt="compass" onClick="checkCompass()"><img id="needle1" style="z-index:3; padding: 0px; position: absolute;top: 0; left:0;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfCAYAAAAfrhY5AAAAJ0lEQVRIie3NsQ0AMAzDMP//c+FMOaBrSwKalXCpJ93+mgMAALxtAJ4+EeNesIMrAAAAAElFTkSuQmCC" alt="compass" onClick="checkCompass()">
+</div>
+</div>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:showMap(false)">&nbsp;&nbsp;X&nbsp;&nbsp;</a>
+</div>
+
+
+<div style="float:left; width:74%; z-index:20">
+<select id="nbp" size ="1"  style="width: 150px; margin:0 10px  0 10px;"  title="MapSelect" class="navbarli">
+<option selected>Click on Map</option>
+</select>
+<button class="buttonTM" onClick="mpSelect()" title="Select This Stop" data-dxt="Select">Select</button>
+<button class="buttonTM" onClick="updateVehicles()" title="Refresh"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAWCAYAAADXYyzPAAAEK0lEQVRIibWVX0xbVRzHLy7swUV9WdSoD8t88M+DD4NCS28LpS0MFERmh3PiFtb/9/bSP/cCGzKLC3NIjEMzs7LJWrh/T/9RYMMmOBaEOaFAYU8mPpjMzcwY4x4cmRv9+WAsrZmmFPwm5+X8+X3O9/zO+R0My0MGA9pm8KLtRWZfIYZhBfnE2IC8j9TQoTqtE/k0rWhW7wrd0jjRD3vp0KjeHeyq8aCXt3wTNXT4g3KHdGPPkeGUkpCg5ugYNPVMQmN3HHRMFGQmFuRmbrXSGZxuOjH+0qaBzXR8h86JZuRWHqrbY2D7/FtoH14BOpAEj/+vxgSWgRlahgOnLgPuQIATIjR0RM15Q1t6Y49pXcHbpVYeWk7PgMefBPeFpf9szNAK1HSMQqmNXWvojDrzAus9odESCweWM9fA418P3ja0Aq7BRSAH5oE6l4AO7nrWuMefhMbuOJTZhft1bWH5hqD1R2P1ChsPb5+aAjqw7tQxkIDaY+MgtwkpDYV+LyOE+2V2EZr7rgAdWE7Pcw0ugZJAKW2r9M2GwDpXcAR3oCyoa3AR1K1ordyBfsZJMXDoxHj9a0yE0DrRFE6Kd9/o/jKdDo8/CUf6Z0Fh48HYN/lKTtA679ijcgv/Y8P7E2koHUiC1h2GCof0S9N70ecz5xsMaFuVO/ypipAemD67mnUXlA5prcodHMgJ3NgWfq7Ewt45/MnX6QDU+QVQkdIftXTko39bhxMCNHTH02A6kIRKdySFk/yVnMCGTvSswsbdaemfzcjtPKgIcfXNrpF3M51mrqv2hObquy6tn5I/CVVMLKUmpau5gb0Xn5ZbuF8P9k6BsX8W6o9PgJKQoMg4DHvp8EkMwzAAKNBQaFLvDmoxDMMOfzixCydE2N8zmeF4GVQUWqugpNGcwABQoCSE72VmDoqNLMhM7D0lwfvVJGoyeNH2fR3h3aUW9naxiQWFjWfe8kZ3VVDSdSUprjm/WFw/pXMJKLOL8CoTOp4TGMMwTOcKdSjtwvTrx0aqM/vrPKEXSy38XYVdhGITCwqr8JuKEAEnUarl9EzWW246+RXghAB9Q/EdOYMfptq2iL7YOLyKOxC4LyyBnhkBPTMCjd1xaD2/kFXByIF5kJm5B1V0qG9T0PJW0S4zc6Cjo2mIa3AxnctMKHUuASoKQQWFfjrgHduZN9TnSxTihPBdsYkF0jf/0Br9d8m0nLkGCrsAaod0q6V34oVNucUwDNO5uN0lZu5eiYUD+9m5LKeEbx4OfTwNGlckJbfyoHWiBWNP7Clsq/5mfZvwjNzK3Sy18mA/OwdqKphSkhIoCRFwuwCVlHS5lgntQyj7fW+JDnovPS63cjf2GIehyMSChpIu7u+KvZNIJAq3HPZP1Xn4nXIrf1NmZqGSQs3/OzBThnb0hJoSO6voyJP5xvgTNbDMDUn59wcAAAAASUVORK5CYII=" width="30" height="22" alt="refresh"></button>
+<br><div><div id="NSTN">&nbsp;</div>
+<input type="checkbox" id="trktp" checked><label for="trktp" data-dxt="Autotrack">Autotrack</label></div>
+<!--<br><a href="javascript:showHerePopup()">Here</a>&nbsp;&nbsp;
+<a href="javascript:showPlotPopup()">Plot</a> -->
+<button class="buttonTM" onClick="showHerePopup()" title="Here Menu" data-dxt="HereMenu">Here Menu</button>
+<button class="buttonTM" onClick="showPlotPopup()" title = "Plot Menu" data-dxt="PlotMenu">Plot Menu</button>
+<!--<a href="javascript:updateVehicles()"><img src="images/refresh.png" alt="refresh"></a> -->
+
+<div id="EoMapMenu" style="display:none; visibility : visible; margin-left:auto; margin-right:auto;">
+<button class="buttonTM" style="font-size:8pt;" onClick="zoom(2)" title="Zoom In">+</button>
+<button class="buttonTM" style="font-size:8pt;" onClick="zoom(0.5)" title="Zoom Out">-</button>
+&nbsp;&nbsp;
+<button class="buttonT" style="font-size:6pt; background-color:#66ff66;" onClick="xcape()" title="Escape">ESC</button>&nbsp;&nbsp;
+<!--<a href="javascript:showOptionPopup()" title="Options">Options</a> -->
+<button class="buttonTM" onClick="showOptionPopup()" title="Options Menu" data-dxt="Options">Options</button>
+</div>
+</div>
+<br>
+<!-- <div id="GMap" style="overflow:scroll; width:100%; height:92%; " > -->
+<div id="GMap" style="overflow:scroll;  width:100%; height:calc(100% - 100px); " >
+</div>
+<div id="HMap" style="overflow:scroll;  width:100%; height:calc(100% - 100px); " >
+</div>
+<div class="arrow_box" id="popup-container">
+<!--<a href="javascript:showOSMcPopup()"><img src="images/info.png" alt="&copy; OpenStreetMap contributors" ></a> -->
+<a href="javascript:showOSMcPopup()">credits</a>
+</div>
+</div>
+
+<div id="Nav" style="visibility : hidden; position : absolute; top : 50pt; left : 20pt" >
+<table class="popupmenu"><tr><td class="bookmark">
+<span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<br><a href="javascript:showPlanMenu()" data-dxt="FindConnections">Find Connections</a>
+<br><a href="javascript:selectFromAll()" data-dxt="SelectStopFromList">Select Stop From List</a>
+<br><a href="javascript:showStopSearch()" data-dxt="SearchForStop">Search For Stop</a>
+<br><a href="javascript:whatsNearby()" data-dxt="WhatsNearby">What's Nearby</a>
+<br><a href="javascript:findBusNumber()" data-dxt="FindBusNumber">Find Bus Number</a>
+<br><a href="javascript:menu('Favs')" data-dxt="Favorites">Favorites Save/Open</a>
+<br><a href="javascript:selectFromMap1()" data-dxt="ViewMap">View Map</a>
+<hr>Colors: <select id="palettesel" onChange="setPalette2()"></select>
+<hr><input type="checkbox" id="eaudio" onClick="enaudio()"><label for="eaudio" data-dxt="EnableAudio"> Enable Audio</label>
+<br><select id="vselect" onChange="populateVoices()"></select>
+<br><input type="checkbox" id="sprec" onClick="enableSpeech()"> <label for="sprec" data-dxt="Recognition">Recognition</label>
+<hr><a href="javascript:lastMonitor()" data-dxt="LastMonitor">Last Monitor</a>
+<br><a href="javascript:stopMonitorMode()" data-dxt="StopMonitorMode">Stop Monitor Mode</a>
+<hr><a href="javascript:menu('File')" data-dxt="File">File</a>
+<br><a href="javascript:menu('Ops')" data-dxt="Ops">Ops</a>
+<br><a href="javascript:menu('Preferences')" data-dxt="Pref">Pref</a>
+<hr><a href="javascript:menu('Help')" data-dxt="Help">Help</a>
+<hr><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="Ops" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<br><a href="javascript:viewTrainBoard()" data-dxt="ViewTimetable">View Timetable</a>
+<hr><a href="javascript:selectHere()" data-dxt="SelectHere">Select Here</a>
+<br><a href="javascript:setHome()" data-dxt="SetHomeDefault">Set Home (Default)</a>
+<br><a href="javascript:clearHome()" data-dxt="ClearHomeDefault">Clear Home (Default)</a>
+<hr><a href="javascript:showPlanMenu()" data-dxt="FindConnections">Find Connections</a>
+<br><a href="javascript:showConnections()" data-dxt="ShowLastConnections">Show Last Connections</a>
+<hr><a href="javascript:getNearest()" data-dxt="GetNearestStation">Get Nearest Station</a>
+<br><a href="javascript:menu('Feedback')" data-dxt="SendFeedback">Send Feedback</a>
+<br><a href="javascript:checkAlerts(true)" data-dxt="UpdateAlerts">Update Alerts</a>
+<br><a href="javascript:reportFacility()" data-dxt="ReportFacilities">Report Facilities</a>
+<br><a href="javascript:showNotifications()" data-dxt="ShowNotifications">Show Notifications</a>
+<br><a href="javascript:getPathway()" data-dxt="StationPathways">Station Pathways</a>
+<br><a href="javascript:getRemoteTile()" data-dxt="FetchTile">Fetch Tile</a>
+<br><a href="javascript:clearTileCache()" data-dxt="ClearTile_Cache">Clear Tile Cache</a>
+<br><a href="javascript:clearReport()" data-dxt="ClearReport">Clear Report</a>
+<br><a href="javascript:reportAS()">Report Associate Service</a>
+<br><a href="javascript:getGTFSDate()">Report MBTA GTFS Date</a>
+<br><a href="javascript:makeMessagesTemplate(0)">Make Messages Template 0</a>
+<br><a href="javascript:makeMessagesTemplate(1)">Make Messages Template 1</a>
+<br><a href="javascript:reportCache()">Report Cache</a>
+<hr><a href="javascript:setTimeNow()" data-dxt="SetTimeAsNow">Set Time As Now</a>
+<br><a href="javascript:menu('TimeMenu')" data-dxt="SetTime">Set Time</a>
+<hr><a href="javascript:reportGeo()" data-dxt="ReportGeolocation">Report Geolocation</a>
+<br><input type="checkbox" id="bSavePositions"> <label for="bSavePositions" data-dxt="RecordPositions">Record Positions</label>
+<br><a href="javascript:saveRecording()" data-dxt="SaveRecordings">Save Recoding</a>
+<br><a href="javascript:clearSavedPositions()" data-dxt="ClearSavedRecordings"> Clear Saved Recordings</a>
+<hr><a href="javascript:printPreview(0)" data-dxt="PrintPreview">Print Preview</a>
+<hr><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="Preferences" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<br><input type="checkbox" id="bIncludeWx" onChange="changedWx()" checked> Weather Alerts
+<!-- <br><input type="checkbox" id="mnrp" checked> MNR Predictions
+<br><input type="checkbox" id="nysube" checked> NY Subway Predictions -->
+<br><input type="checkbox" id="t24cb" onClick="refreshTime()"> 24 hour time
+<br><input type="checkbox" id="fol" onClick="checkConnection()" > <span data-dxt="AirplaneMode">Airplane Mode / Offline</span>
+<br><input type="checkbox" id="rp"> Report Prediction
+<br><input type="checkbox" id="mqe"> Marquee
+<br><input type="checkbox" id="UseMTA"> Use MTA pb
+<hr><input type="checkbox" id="dba" onClick="procBeep()" checked> Don't Beep
+<br><input type="checkbox" id="dbb" onClick="procOK()"> Don't OK
+
+<hr><input type="checkbox" id="uem" > Use EO Map
+<br><input type="checkbox" id="lse" onClick="refreshTime()" checked> Location Services
+<br><input type="checkbox" id="ecmps" onClick="checkCompass()" checked> Compass
+<br><input type="checkbox" id="uscal" onClick="checkScalable()" > User Scalable
+<!--
+<hr>Max walk distance (miles) <input type="text" id="wdmi" value=".5" size="4" onChange="setWalkLimit()">
+<br>Change time (minutes) <input type="text" id="chgt" value="2" size="4" onChange="changeTime()">
+-->
+<hr>Recognition Mic Gain
+<br><input id="micvol" onchange="sliderChange()" type="range" min="0" max="1024" step="1" value="683" >
+<div id="tbid">0 db</div>
+<br><input type="checkbox" id="useStd" checked> Use Recog Std
+<br><input type="checkbox" id="dcmds" checked> Decode Commands
+
+<hr><a href="javascript:getFacilityInfo()">Get Facility Info</a>
+<br><a href="javascript:getFacilityInfoByStop()">Facility Info By Stop</a>
+<br><a href="javascript:getPathwaysInfoByStop()">Pathways Info By Stop</a>
+<br><a href="javascript:getLevelsInfoByStop()">Levels Info By Stop</a>
+<br><a href="javascript:menu('Preferences2')">More Preferences</a>
+<br><a href="javascript:developer()">Developer</a>
+<hr><a href="javascript:clearCache()">Clear Cache</a>
+<hr><a href="javascript:CloseMenu()">Close</a>
+</td></tr></table>
+</div>
+
+<div id="Preferences2" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<br><input type="checkbox" id="debugr" checked> Debug Reports
+<br><input type="checkbox" id="aop"> Audio Option
+<br><input type="checkbox" id="rap"> Report Audio
+<br><input type="checkbox" id="rmf"> Report MNR feed
+<br><input type="checkbox" id="uer"> Use EO schedule
+<br><input type="checkbox" id="msp" checked> Mix Sked / Prediction
+<br><input type="checkbox" id="glf" checked> Green Line Filter
+<br><input type="checkbox" id="usn" checked> Use Selected As Nearby
+<br><input type="checkbox" id="cnx"> Enable Monitor Cnx
+<br><input type="checkbox" id="twa"> Test Weather Alerts
+<br><input type="checkbox" id="bMTS" checked> Monitor tracks stops
+<br><input type="checkbox" id="ath" checked> Always Track Here
+<br><input type="checkbox" id="bFilterDupes" > Force Dupe Filter
+<br><input type="checkbox" id="iam" checked> Include Other
+<br><input type="checkbox" id="sam" checked> Show Other in Sked
+<br><input type="checkbox" id="nch" checked> New Cache
+<br><input type="checkbox" id="ues" onClick="updateService()"> Use EO Server
+<br><input type="checkbox" id="sl" checked>Show Nearby
+<br><input type="checkbox" id="tas" >Report Trips Added to Stops
+<br>Max time (min) <input type="text" id="max_time" value="1440" size="4">
+<br>Max trips <input type="text" id="max_trips" value="25" size="4">
+<br>Server timeout (sec) <input type="text" id="serv_to" value="15" size="4">
+<hr><a href="javascript:CloseMenu()">Close</a>
+</td></tr></table>
+</div>
+
+<div id="Help" style="visibility : hidden; position : absolute; top : 50pt; left : 60pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<select id="langsel" size="1" onchange="selectLang()">
+<option selected>English</option>
+<option>Espa&ntilde;ol</option>
+<option>Fran&ccedil;ais</option>
+<option>Deutsch</option>
+<option>Italiano</option>
+<option>日本語</option>
+<option>中文</option>
+</select>
+<hr><a href="https://www.eightolives.com/docs/Trains/index.htm" target="h" onClick="CloseMenu()" data-dxt="MoreHelp">More Help</a>
+<br><a href="https://www.eightolives.com/docs/Trains/images/eightolives_Trains_QR.png" target="h" onClick="CloseMenu()" data-dxt="ShareTrains">Share Trains - the QR code</a>
+<br><a href="https://www.eightolives.com/docs/Trains/docs/UsingTrains4.pdf" target="h" onClick="CloseMenu()" data-dxt="UsingTrains">Using Trains (pdf)</a>
+<br><a href="https://www.eightolives.com/docs/Trains/quikhints.htm" target="h" onClick="CloseMenu()" data-dxt="QuickHints">Quick Hints</a>
+<br><a href="https://www.eightolives.com/docs/Trains/Trains_cookies.htm" target="h" onClick="CloseMenu()" data-dxt="AboutCookies">About Cookies</a>
+<br><a href="https://www.eightolives.com/docs/Trains/LICENSE.txt" target="h" onClick="CloseMenu()" data-dxt="License">License</a>
+<br><a href="https://www.eightolives.com/docs/Trains/TrainsIssues.htm" target="h"
+onClick="CloseMenu()" data-dxt="KnownIssues">Known Issues</a>
+<br><a href="javascript:menu('Feedback')" data-dxt="SendFeedback">Send Feedback</a>
+<br><a href="javascript:menu('Aboutx')" data-dxt="About">About</a>
+<hr><a href="https://www.mbta.com" target="e" onClick="CloseMenu()">MBTA.com</a>
+<br><a href="https://www.amtrak.com" target="u" onClick="CloseMenu()">Amtrak</a>
+<br><a href="https://www.mta.info" target="u" onClick="CloseMenu()">MTA</a>
+<br><a href="https://www.njtransit.com/" target="u" onClick="CloseMenu()">NJ Transit</a>
+<hr><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="File" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
+<table class="popupmenu"><tr><td class="bookmark">
+<a href="javascript:openLocal()" data-dxt="OpenLocal">Open Local</a>
+<br><a href="javascript:saveLocalFile()" data-dxt="SaveLocal">Save Local</a>
+<hr><a href="javascript:openFileFS()" data-dxt="openFS">Open FS</a>
+<br><a href="javascript:saveFS()" data-dxt="SaveFS">Save FS</a>
+<hr><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="FileSel" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="OpenFile">Open File</span><br>
+<hr>
+<br><select id="pfilelist" size = 1 style="width: 200px;">
+</select>
+<br><br><button onClick="openLocalFile()" data-dxt="Open">Open</button>
+<button onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+<button onClick="deleteLocal2()" data-dxt="Delete">Delete</button>
+</td></tr></table>
+</fieldset>
+</div>
+
+<div id="OpenFile" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="OpenFile">Open File</span><br>
+<hr><span data-dxt="SelectFile">Select File</span>:
+<br><input type="file" id="files" name="files[]" > <!--accept=".sk0,.sk1,.sk3,.gpx" > -->
+<br><br>
+<button onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+</td></tr></table>
+</fieldset>
+</div>
+
+<div id="StopSearch" style="visibility : hidden; position : absolute; top : 50pt; left : 15pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="SearchforaStop">Search for a Stop</span><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span><br>
+<hr><label for="shst" data-dxt="@4">1. Enter partial street, stop or station:</label>
+<br><input type="text" id="shst" size="15">
+<!--
+<br><input type="radio" name="tp" id="tpb"> <label for="tpb" data-dxt="Bus"> Bus</label>
+<input type="radio" name="tp" id="tpt"> Train
+<input type="radio" name="tp" id="tps"> Subway
+<br><input type="radio" name="tp" id="tpz" checked> All/other -->
+<br><button class ="buttonT"  onClick="searchStop()" data-dxt="Search">Search</button>
+<hr><label for="stoplist" data-dxt="@5">2. Select from list:</label>
+<br><select id="stoplist" size = 1 style="width: 200px;">
+</select>
+<br><br><button class ="buttonT"  onClick="selectFromList()" data-dxt="Select">Select</button>
+<button class ="buttonT"  onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+</td></tr></table>
+</fieldset>
+</div>
+
+<!--
+<div id="BusSel" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="Find a Bus">Find a Bus</span><br>
+<hr><span data-dxt="Select a Bus Route Number">Select a Bus Route Number</span>:
+<br><input type="radio" name="BSEL" id="mbtabus" onChange="buschg()" checked>MBTA &nbsp;&nbsp;<input type="radio" name="BSEL" id="njsel" onChange="buschg()">NJT&nbsp;&nbsp;<br><input type="radio" name="BSEL" id="ctabsel" onChange="buschg()">CTA &nbsp;&nbsp;<input type="radio" name="BSEL" id="sfbsel" onChange="buschg()">SFMTA&nbsp;&nbsp;<br><input type="radio" name="BSEL" id="labsel" onChange="buschg()">LA&nbsp;&nbsp;<input type="radio" name="BSEL" id="riptasel" onChange="buschg()">RIPTA&nbsp;&nbsp;<input type="radio" name="BSEL" id="nybsel" onChange="buschg()">NYC
+<br><select id="buslistold" size = 1 style="width: 200px;">
+</select>
+<br><br><button class ="buttonT"  onClick="findBusNumberFromList()" data-dxt="FindBus">Find Bus</button>
+<button class ="buttonT"  onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+</td></tr></table>
+</fieldset>
+</div>
+-->
+
+<div id="BusSel2" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="FindaBus">Find a Bus</span><br>
+<hr><span data-dxt="SelectaCarrier">Select a Carrier:</span>
+<br><select id="buscarrierlist" size = 1 style="width: 200px;" onChange="buschg()">
+<option>Boston MBTA</option>
+<option>New Jersey Transit</option>
+<option>Chicago</option>
+<option>San Francisco</option>
+<option>Los Angeles</option>
+<option>Rhode Island</option>
+<option>St Louis</option>
+<option>Washington DC</option>
+<option>New York MTA Bus</option>
+</select>
+<br><label for="buslist" data-dxt="SelectaBusRouteNumber">Select a Bus Route Number:</label>
+<br><select id="buslist" size = 1 style="width: 200px;">
+</select>
+<br><a href = "javascript:updateBusList()" data-dxt="Update">Update</a>
+<br><br><button class ="buttonT"  onClick="findBusNumberFromList()" data-dxt="FindBus">Find Bus</button>
+<button class ="buttonT"  onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+</td></tr></table>
+</fieldset>
+</div>
+
+<div id="PlotBusSel" style="visibility : hidden; position : absolute; top : 50pt; left : 80pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="PlotaBusRoute">Plot a Bus Route</span><br>
+<hr><span data-dxt="SelectaBusRouteNumber">Select a Bus Route Number:</span>
+<br><select id="buslist2" size = 1 style="width: 200px;">
+</select>
+<br><br><button onClick="plotBusFromList()" data-dxt="PlotBus">Plot Bus</button>
+<button onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+</td></tr></table>
+</fieldset>
+</div>
+
+<div id="Aboutx" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt; color : black;border-radius:30px;" >
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:black;font-size:12pt;text-align: center;" ><i data-dxt="Welcome">Welcome to</i><br><br><span style="font-weight: bold" data-dxt="eightolivesTrains">eightolives Trains</span><br> <br><span data-dxt="@20">Click on location or entries for menus and navigation.</span><br><br><span style="font-weight: bold" data-dxt="@21">Have a safe trip!</span></span><br><br> 
+<span style= "font-size : 8pt">Development Version 0.2
+<br>copyright &copy; 2026 William Kaupinis, All rights reserved.
+<br>eightolives.com</span>
+<hr ><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="Feedback" class="popupmenu" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
+<!--<form name="FB" method="post" action="../../forms/trains_feedback.php" class="popupmenu" > -->
+<fieldset class="popupmenu" style="color:black;">
+<span style="color:blue" data-dxt="SendFeedback">Send Feedback</span><span style="float:right"><a href="javascript:CloseMenu()">X</a></span>
+<table class="popupmenu"><tr><td class="bookmark"><table>
+<tr><td class="form_label"><label for="tid" data-dxt="From">From</label>:&nbsp;</td>
+<td><input type="text" class="form_text" id="tid" size="15" value="Ann Nony Moose" placeholder="An id or name" ></td></tr>
+<tr><td class="form_label"><label for="ttitle" data-dxt="Subject">Subect</label>:&nbsp;</td>
+<td><input type="text" class="form_text" id="ttitle" size="15" value="Trains Feedback" placeholder="A short description" ></td></tr>
+<tr><td colspan=2><label for="fb" data-dxt="@6">Feedback, comment or wish</label>:<br>
+<textarea id="fb" cols = "25" rows="10" placeholder="Your feedback..." > </textarea>
+
+</td></tr></table></tr></table>
+<br><button onClick="feedbackSubmit()" data-dxt="Submit">Submit</button>
+<button onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+</fieldset>
+<!-- </form> -->
+</div>
+
+<div id="TimeMenu" style="visibility : hidden; position : absolute; top : 50pt; left : 20pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue">Set Time</span>
+<br>Upcoming Day:<br><select id="tday" size = 1 style="width: 150px;"><option selected>Today</option><option>Sunday</option><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option>
+</select>
+<br><br>
+Hours(0 - 23):&nbsp;<input type="text" id="thr" size = "2" value = "0">
+<br>Min(0 - 59): &nbsp;<input type="text" id="tmn" size = "2" value = "00">
+<!--<br><input type="checkbox" id="uct" onChange="selDay()" checked>Use Current Real Time
+<br><button onClick="getCurrentTime()">Use Current Time</button>-->
+<hr><button onClick="setTime()" data-dxt="SetTime">Set Time</button>
+<button onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><button onClick="setTimeNow()" data-dxt="SetTimeNow">Set Time As NOW</button>
+</td></tr></table>
+</fieldset>
+</div>
+
+<div id="SkedPop" style="visibility : hidden; position : absolute; top : 150pt; left : 55pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<br><a href="javascript:refresh()" data-dxt="Reresh">Refresh </a>
+<hr><input type="radio" name="sp" id="spp" onChange="updateSPS()" checked> <label for="spp" data-dxt="Prediction">Prediction</label>
+<br><input type="radio" name="sp" id="sps" onChange="updateSPS()"> <label for="sps" data-dxt="Skedforward">Schedule Forward</label>
+<br><input type="radio" name="sp" id="spa" onChange="updateSPS()"> <label for="spa" data-dxt="SkedAll">Schedule All</label>
+<hr><input type="checkbox" id="irn" checked> <label for="irn" data-dxt="ShowRouteName">Show Route Name</label>
+<br><input type="checkbox" id="sti" > <label for="sti" data-dxt="ShowTripID">Show Trip Id</label>
+<hr ><a href="javascript:printPreview(1)" data-dxt="PrintPreiew">Print Preview</a>
+<hr ><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+
+<div id="PlotPopup" style="visibility : hidden; position : absolute; top : 50pt; left : 80pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:closePlotPopup()">X</a></span>
+<br><a href="javascript:plotTrip()" data-dxt="PlotTrip">Plot Trip</a>
+<br><a href="javascript:updateVehicles1()" data-dxt="UpdateVehicles">Update Vehicles</a>
+<br><a href="javascript:plotStart()" data-dxt="PlotHereToStart">Plot Here to Start</a>
+<br><a href="javascript:plotConnections(0)" data-dxt="PlotConnections">Plot Connections</a>
+<hr><a href="javascript:startMonitorMode()" data-dxt="MonitorTrip">Monitor This Trip</a>
+<!--<br><input type="checkbox" id="trktp" checked> <label>Autotrack</label> -->
+<br><a href="javascript:stopMonitorMode()" data-dxt="StopMonitorMode">Stop Monitor Mode</a>
+<hr><a href="javascript:setMarkerHere('w')" data-dxt="AddHereAsWaypoint">Add Here As Waypoint</a>
+<br><a href="javascript:addMarker()" data-dxt="AddClickedToWaypoint">Add Clicked As Waypoint</a>
+<br><a href="javascript:deleteLastWaypoint()" data-dxt="DeleteLastWaypoint">Delete Last Waypoint</a>
+<br><a href="javascript:mapWaypoints()" data-dxt="PlotWaypoints">Plot Waypoints</a>
+<!--<br><a href="javascript:connectMarker()">Plot Waypoints</a> -->
+<br><a href="javascript:saveWaypoints()" data-dxt="SaveWaypoints">Save Waypoints</a>
+<hr><a href="javascript:clearPlot()" data-dxt="ClearPlots">Clear Plots</a>
+<br><a href="javascript:plotBus2()" data-dxt="PlotBus">Plot Bus</a>
+<br><a href='javascript:getPathway()' data-dxt="StationPathways">Station Pathways</a>
+<hr ><a href="javascript:closePlotPopup()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="HerePopup" style="visibility : hidden; position : absolute; top : 50pt; left : 80pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:closeHerePopup()">X</a></span>
+<br><a href="javascript:showHere()" data-dxt="ShowHere">Show Here</a>
+<hr><a href="javascript:setMarkerHere('y')" data-dxt="ShowYellow">Set Yellow Marker Here</a>
+<br><a href="javascript:setMarkerHere('g')" data-dxt="ShowGreen">Set Green Marker Here</a>
+<br><a href="javascript:setMarkerHere('b')" data-dxt="ShowBlue">Set Blue Marker Here</a>
+<br><a href="javascript:setMarkerHere('w')" data-dxt="SetWaypoint">Set Waypoint Here</a>
+<br><a href="javascript:showLatLonPopup()" data-dxt="ShowLatLon">Center Lat Lon</a>
+<hr><a href="javascript:clearMarkers()" data-dxt="ClearMarkers">Clear Markers</a>
+<hr><a href="javascript:showDMap(true)" data-dxt="CompassView">Compass View</a>
+<hr ><a href="javascript:closeHerePopup()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="LatLonM" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="SetCenterToLatLon">Set Center to Lat Lon</span><br>
+<hr>
+<table>
+<tr><td>
+<label for="clat" data-dxt="Lat">Lat</label> <input type="text" id="clat" value="" size="10" ></td></tr>
+<tr><td><label for="clon" data-dxt="Lon">Lon</label> <input type="text" id="clon" value="" size="10" ></td></tr>
+<tr><td><a href="javascript:clearLatLon()" data-dxt="ClearEntries">Clear Entries</a>
+</td></tr></table>
+<br><br><button onClick="centerLatLon()" data-dxt="GoToLatLon">Go to Lat Lon</button>
+<button onClick="closeLatLon()" data-dxt="Cancel">Cancel</button>
+</td></tr></table>
+</fieldset>
+</div>
+
+
+<div id="OptionPopup" style="visibility : hidden; position : absolute; top : 50pt; left : 80pt" >
+<table class="popupmenu"><tr style="color:black;"><td class="bookmark">
+<span style="float:right;font-size:10pt"><a href="javascript:closeOptionPopup()">X</a></span>
+<br><input type="checkbox" id="uwb" onClick="mapBackground()"> <label for="uwb" data-dxt="BlackBackground">Black Background</label>
+<br><input type="checkbox" id="uws" onClick="mapColor()"> <label for="uws" data-dxt="WhiteStops">White Stops</label>
+<br><input type="checkbox" id="dss" onClick="updateDss()"> <label for="dss" data-dxt="DisplaySubwayStops">Display Subway Stops</label>
+<br><input type="checkbox" id="ds" onClick="updateDs()" checked> <label for="ds" data-dxt="DisplayStops">Display Stops</label>
+<br><input type="checkbox" id="stiles" onClick="updateTiles()" checked> <label for="stiles" data-dxt="ShowTiles">Show Tiles</label>
+<br><br><a href="javascript:measure()" data-dxt="Measure">Measure</a>
+<br><a href="javascript:showDMap(true)" data-dxt="CompassView">Compass View</a>
+<br><a href="javascript:showOSMcPopup()" data-dxt="credit">OpenStreetMap credit</a>
+<hr ><a href="javascript:closeOptionPopup()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="TripPopup" style="visibility : hidden; position : absolute; top : 150pt; left : 20pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<br><a href="javascript:updateTripView()" data-dxt="Refresh">Refresh Trip Data</a>
+<br><input type="checkbox" id="sxs" > <label for="sxs" data-dxt="ShowExpiredStops">Show Expired Stops</label>
+<br><a href="javascript:showTripInfo()" data-dxt="TripInfo">Trip Info</a>
+<hr><a href="javascript:plotTrip()" data-dxt="PlotTrip">Plot Trip</a>
+<br><a href="javascript:selectFromMap1()" data-dxt="ViewMap">View Map</a>
+<hr><a href="javascript:startMonitorMode()" data-dxt="MonitorThisTrip">Monitor This Trip</a>
+<br><a href="javascript:stopMonitorMode()" data-dxt="StopMonitorMode">Stop Monitor Mode</a>
+<hr><a href="javascript:openTrip(1,1)" data-dxt="OpenTrip1">Open Trip 1</a>
+<br><a href="javascript:openTrip(2,1)" data-dxt="OpenTrip2">Open Trip 2</a>
+<hr><a href="javascript:saveTrip(1,1)" data-dxt="SaveAsTrip1">Save As Trip 1</a>
+<br><a href="javascript:saveTrip(2,1)" data-dxt="SaveAsTrip2">Save As Trip 2</a>
+<hr><a href="javascript:showNotifications()" data-dxt="ShowNotifications">Show Notifications</a>
+<br><a href="javascript:showDepNotMenu()" data-dxt="AddDepartureNotification">Add Departure Notification</a>
+<hr><a href="javascript:adjustDeparture()" data-dxt="ManuallyAdjustDeparture">Manually Adjust Departure</a>
+<br><a href="javascript:deleteAdjTrip()" data-dxt="ClearAdjustments">Clear Adjustments</a>
+<hr><a href="javascript:showDetails(DETAILSINDEX)" data-dxt="BacktoDetails">Back to Details</a>
+<br><a href="javascript:showBus()" data-dxt="BacktoShowBus">Back to Show Bus</a>
+<br><a href="javascript:printPreview(1)" data-dxt="PrintPreview">Print Preview</a>
+<hr ><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="InfoWindow" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt; color : black;" >
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="float:right"><a href="javascript:CloseMenu()">X</a></span>
+<br>
+<div id="infowin"></div>
+</td></tr></table>
+</div>
+
+<div id="Favs" style="visibility : hidden; position : absolute; top : 50pt; left : 60pt" >
+<table class="popupmenu"><tr><td class="bookmark">
+<a href="javascript:saveTrip(1,0)" data-dxt="SaveAsStop1">Save As Stop 1</a>
+<br><a href="javascript:saveTrip(2,0)" data-dxt="SaveAsStop2">Save As Stop 2</a>
+<hr><a href="javascript:openTrip(1,0)" data-dxt="OpenStop1">Open Stop 1</a>
+<br><a href="javascript:openTrip(2,0)" data-dxt="OpenStop2">Open Stop 2</a>
+<hr><a href="javascript:openTrip(1,1)" data-dxt="OpenTrip1">Open Trip 1</a>
+<br><a href="javascript:openTrip(2,1)" data-dxt="OpenTrip2">Open Trip 2</a>
+<hr><a href="javascript:openTrip(1,3)" data-dxt="OpenItinerary1">Open Itinerary 1</a>
+<br><a href="javascript:openTrip(2,3)" data-dxt="OpenItinerary2">Open Itinerary 2</a>
+<hr><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="TAdj" style="visibility : hidden; position : fixed; top : 250px; left : 20pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<br><a href="javascript:setDepartureNow()" data-dxt="@8">Manually Set Departure to NOW</a>
+<br><a href="javascript:adjustDeparture()" data-dxt="@9">Manually Adjust Departure</a>
+<br><a href="javascript:deleteAdjTrip()" data-dxt="@10">Clear Adjusted Trip</a>
+<br><a href="javascript:clearAdjustedNTrips()" data-dxt="@11">Clear CompensatedTrips</a>
+<br><a href="javascript:clearAdjustedTrips()" data-dxt="@12">Clear All Adjusted Trips</a>
+<hr ><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="SubStationPopup" style="visibility : hidden; position : absolute; top : 50pt; left : 20pt" >
+<table class="popupmenu"><tr><td class="bookmark">
+<span style="color:blue" data-dxt="@13">Other Platforms At This Station:&nbsp;</span><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span><br>
+<br><div id="glist"></div>
+<br><select id="groutes" size = 1 onChange="loadRoute()" style="width: 150px;"></select>
+<button onClick="loadRoute()" data-dxt="Select">Select</button>
+<hr><a href="javascript:selectFromAll()" data-dxt="SelectFromList">Select From List</a>
+<br><a href="javascript:selectFromMap()" data-dxt="SelectFromMap">Select From Map</a>
+<br><a href="javascript:showStopSearch()" data-dxt="SearchForStop">Search For Stop</a>
+<hr><a href="javascript:saveTrip(1,0)" data-dxt="SaveAsStop1">Save As Stop 1</a>
+<br><a href="javascript:saveTrip(2,0)" data-dxt="SaveAsStop2">Save As Stop 2</a>
+<hr><a href="javascript:openTrip(1,0)" data-dxt="OpenStop1">Open Stop 1</a>
+<br><a href="javascript:openTrip(2,0)" data-dxt="OpenStop2">Open Stop 2</a>
+<hr><a href="javascript:stopsBack()" data-dxt="Back">Back</a>
+<br><a href='javascript:stopsForward()' data-dxt="Forward">Forward</a>
+<br><a href='javascript:getPathway()' data-dxt="StationPathways">Station Pathways</a>
+<hr><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="ConnectionsDetails" style="visibility : hidden; position : absolute; top : 150pt; left : 20pt" >
+<table class="popupmenu"><tr><td class="bookmark">
+<a href="javascript:showConnections()" data-dxt="VIewConnections">View Connections</a>
+<hr><a href="javascript:plotConnections(1)" data-dxt="PlotDetails">Plot Details</a>
+<hr><a href="javascript:saveTrip(1,3)" data-dxt="SaveAsItinerary1">Save As Fav Itinerary 1</a>
+<hr><a href="javascript:saveTrip(2,3)" data-dxt="SaveAsItinerary2">Save As Fav Itinerary 2</a>
+<hr><a href="javascript:saveConnections()" data-dxt="SaveConnections">Save Connections</a>
+<br><a href="javascript:showNotifications()" data-dxt="ShowNotifications">Show Notifications </a>
+<br><a href="javascript:addTripNotifications()" data-dxt="AddTripNotifications">Add Trip Notifications </a>
+<br><a href="javascript:printPreview(1)" data-dxt="PrintPreview">Print Preview</a>
+<hr><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="Madj" style="visibility : hidden; position : fixed; top : 50pt; left : 15pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="AdjustDepartures">Adjust Departures</span><br>
+<hr>
+<table><tr>
+<td style="text-align: right;" data-dxt="Adjust">Adjust:</td><td><select id="deptime" size = 1 style="width: 150px;"> <!--onChange="checkFrom()"> -->
+<option>-30</option>
+<option>-25</option>
+<option>-20</option>
+<option>-15</option>
+<option>-10</option>
+<option>-5</option>
+<option>-4</option>
+<option>-3</option>
+<option>-2</option>
+<option>-1</option>
+<option selected>0</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>10</option>
+<option>15</option>
+<option>20</option>
+<option>25</option>
+<option>30</option>
+<option>45</option>
+<option>60</option>
+<option>120</option>
+<option>180</option>
+<option>240</option>
+<option>300</option>
+</select>min</td></tr>
+</table>
+<br><br><button onClick="adjustDeparture1()" data-dxt="Adjust">Adjust</button>
+<button onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+</td></tr></table>
+</fieldset>
+</div>
+
+<div id="Notify" style="visibility : hidden; position : absolute; top : 50pt; left : 15pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="NotifyEvents">Notify Events</span><br>
+<hr>
+<select id="notifies" size = 1 style="width: 150px;" ><option>-</option></select>
+<br><br><button onClick="delSelNot()" data-dxt="DeleteNotification">Delete Notification</button>
+<br><br><button onClick="clearAllNotifies()" data-dxt="ClearAll">Clear All</button>
+<button onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+</td></tr></table>
+</fieldset>
+</div>
+
+<div id="DepNot" style="visibility : hidden; position : absolute; top : 50pt; left : 15pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="AddDepartureNotification">Add Departure Notification</span><br>
+<hr>
+<br><div id="wpl"></div>
+<br><div id="wpm"></div>
+<br><input type="radio" name="rdn" id="dn5" checked onChange="updateWPM()"><label for="dn5" data-dxt="@22">5 Minute Warning</label>
+<br><input type="radio" name="rdn" id="dn30" onChange="updateWPM()"><label for="dn30" data-dxt="@23">30 Minute Warning</label>
+<br><input type="radio" name="rdn" id="dn60" onChange="updateWPM()"><label for="dn60" data-dxt="@24">1 Hour Warning</label>
+<br><br><button onClick="addDepNot()" data-dxt="Add">Add</button>
+<button onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+</td></tr></table>
+</fieldset>
+</div>
+
+<div id="Plan" style="visibility : hidden; position : absolute; top : 50pt; left : 15pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark"> 
+<span style="color:blue" data-dxt="FindConnections">Find Connections</span><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span><br>
+<hr>
+
+<table>
+<tr><td style="text-align: right;"><label for="tripfrom" data-dxt="From">From</label>:</td><td>     
+<select id="tripfrom" size = 1 style="width: 150px;" 
+onChange="checkFrom()"><option>-</option><option selected>Here</option><option>Home</option><option>Current Selection</option><option>Select from List</option><option>Select from Map</option><option>Search For Stop</option><option>Airport</option><option>North Station</option><option>South Station</option><option>New York Penn Station Amtrak</option><option>New York-Grand-Central-NY</option><option>Chicago-IL Union Station</option><option>Los Angeles-CA Union Station</option><option>San Francisco Embarcadero (BART)</option><option>Seattle King Street Station-WA</option>
+</select></td></tr>
+<tr><td style="text-align: right;"><label for="tripto" data-dxt="To">To</label>:</td><td>  
+<select id="tripto" size = 1 style="width: 150px;" onChange="checkTo()"><option>-</option><option>Home</option><option>Here</option><option>Current Selection</option><option>Select from List</option><option>Select from Map</option><option>Search For Stop</option><option>Airport</option><option selected>North Station</option><option>South Station</option><option>New York Penn Station Amtrak</option><option>New York-Grand-Central-NY</option><option>Chicago-IL Union Station</option><option>Los Angeles-CA Union Station</option><option>San Francisco Embarcadero (BART)</option><option>Seattle King Street Station-WA</option>
+</select></td></tr>
+
+<tr><td style="text-align: right;"><label for="starttime" data-dxt="StartTime">Start time</label>:</td><td> 
+<select id="starttime" size = 1 style="width: 150px;"><option selected>NOW</option><option>1 AM</option><option>2 AM</option><option>3 AM</option><option>4 AM</option><option>5 AM</option><option>6 AM</option><option>7 AM</option><option>8 AM</option><option>9 AM</option><option>10 AM</option><option>11 AM</option><option>12 PM</option><option>1 PM</option><option>2 PM</option><option>3 PM</option><option>4 PM</option><option>5 PM</option><option>6 PM</option><option>7 PM</option><option>8 PM</option><option>9 PM</option><option>10 PM</option><option>11 PM</option><option>12 AM</option>
+</select></td></tr>
+
+<tr><td style="text-align: right;"><label for="tripday" data-dxt="UpcomingDay">Upcoming Day</label>:</td><td> 
+<select id="tripday" size = 1 style="width: 150px;"><option selected>Today</option><option>Sunday</option><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option>
+</select></td></tr>
+</table>
+
+<br><div id ="bearing"> </div>
+<br><input type="checkbox" id="hbc" checked> <label for="hbc" data-dxt="HideBadConnections">Hide Bad Connections</label>
+<br><input type="checkbox" id="faf" checked> <label for="faf" data-dxt="ApplyFilter">Apply filter</label>
+<br><label for="wdmi" data-dxt="@18">Max walk distance (miles)</label> <input type="text" id="wdmi" value=".5" size="4" onChange="setWalkLimit()">
+<br><label for="chgt" data-dxt="@19">Change time (minutes)</label> <input type="text" id="chgt" value="2" size="4" onChange="changeTime()">
+<br><button onClick="showConnections()" data-dxt="ShowLast">Show Last</button>&nbsp;&nbsp;&nbsp;&nbsp;
+<button onClick="reverse()" data-dxt="ReverseTrip">Reverse Trip</button>
+<!--<button onClick="showFindHints()" data-dxt="Hints">Hints</button> -->
+&nbsp;<a href="findhints.htm" target="h" data-dxt="Hints">Hints</a>
+<br><br><button class ="buttonT"  onClick="getConnections()" data-dxt="GetConnections">Get Connections</button>
+<button class ="buttonT"  onClick="closeConnections()" data-dxt="Cancel">Cancel</button>
+</td></tr></table> 
+</fieldset>
+</div>
+
+
+<div id="FSTOP" style="visibility : hidden; position : absolute; top : 50pt; left : 15pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="Pathways">Pathways</span><br>
+<hr>
+<table><tr>
+<td style="text-align: right;" data-dxt="From">From:</td><td><select id="fstopfrom" size = 1 style="width: 150px;" onChange="fcheckFrom()"><option>-</option><option selected>Here</option><option>Selected</option><option>Select Entrance/Exit from List</option><option>Select Stop/Track from List</option>
+</select></td></tr>
+<tr><td style="text-align: right;" data-dxt="To">To:</td><td> <select id="fstopto" size = 1 style="width: 150px;" onChange="fcheckTo()"><option>-</option><option>Here</option><option>Selected</option><option>Select Entrance/Exit from List</option><option selected>Select Stop/Trackfrom List</option>
+</select></td></tr>
+</table>
+<br><input type="checkbox" id="wcp" data-dxt="WheelchairPath"> Wheelchair Path?
+<br><input type="checkbox" id="smp" onChange="showPMap()" data-dxt="ShowMap"> Show Map?
+<br><br><a href="javascript:reversePath()" data-dxt="ReversePath">Reverse Path</a>
+<br><br><button onClick="findPathway1()" data-dxt="FindPathway">Find Pathway</button>
+<button onClick="closeMenuById('FSTOP')" data-dxt="Cancel">Cancel</button>
+</td></tr></table> 
+</fieldset>
+</div>
+
+<div id="SELW" style="visibility : hidden; position : absolute; top : 100pt; left : 50pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="Select">Select</span><br>
+<hr>
+<select id="sellist" size = 1 style="width: 150px;" ><option>-</option>
+</select>
+<br><br><button onClick="selWin()" data-dxt="Select">Select</button>
+<button onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+</td></tr></table>
+</fieldset>
+</div>
+
+<div id="You" style="visibility : hidden; position : fixed; top : 100px; left : 20pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<br><a href="javascript:showHere()" data-dxt="ShowHere">Where Am I?</a>
+<br><a href="javascript:setHome()" data-dxt="SetSelectedAsHome">Set Selected As Home</a>
+<br><a href="javascript:clearHome()" data-dxt="ClearHome">Clear Home</a>
+<hr ><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="Dirs" style="visibility : hidden; position : fixed; top : 100px; left : 20pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<br><a href="javascript:selectClosestDoor()" data-dxt="SelectClosestDoor">Select Closest Door</a>
+<br><a href="javascript:showPathToStop()" data-dxt="GetPathtoStop">Get Path to Stop</a>
+<br><a href="javascript:showPathToDoor()" data-dxt="GetPathtoDoor">Get Path to Door</a>
+<br><a href="javascript:showDMap(true)" data-dxt="ShowGraph">Show Graph</a>
+<hr ><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="Path" style="visibility : hidden; position : fixed; top : 100px; left : 20pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<br><a href="javascript:toDoors()" data-dxt="BacktoDoors">Back to Doors</a>
+<br><a href="javascript:showPathToStop()" data-dxt="GetPathtoStop">Get Path to Stop</a>
+<br><a href="javascript:showPathToDoor()" data-dxt="GetPathtoDoor">Get Path to Door</a>
+<br><a href="javascript:showDMap(true)" data-dxt="ShowGraph">Show Graph</a>
+<hr ><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="Plat" style="visibility : hidden; position : fixed; top : 100px; left : 20pt" >
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<br><a href="javascript:toDoors()" data-dxt="BacktoDoors">Back to Doors</a>
+<br><a href="javascript:showPathToPlat()" data-dxt="GetPathtoSelectedPlatform">Get Path to Selected Platform</a>
+<br><a href="javascript:showDMap(true)" data-dxt="ShowGraph">Show Graph</a>
+<hr ><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="Wron" style=" position : fixed; top : 130px; left : 70px; width:180px; background-color:#ffff99" >
+</div>
+
+<div id="OSMc" style="visibility : hidden; position : absolute; top : 150pt; left : 30pt; color : black;z-index:9999" >
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:black;font-size:12pt;text-align: center;" >
+Map tiles &copy; OpenStreetMap contributors<br><br>Visit <a href= 'https://www.openstreetmap.org/copyright' target='f'> the OpenStreetMap copyright page.</a></span>
+
+<hr><a href="javascript:closeOSMcPopup()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+<div id="AlertWindow" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt; color : black; width:80%" >
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="float:right"><a href="javascript:CloseAlertMenu()">X</a></span>
+<br>
+<div id="alertwin"></div>
+</td></tr></table>
+</div>
+
+<div id="MapW" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt; color : black;" >
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="SelectMapType">Select Map Type</span><span style="float:right"><a href="javascript:CloseMenu()">X</a></span>
+<br><input type="radio" id="rem" name = "rmm" > <label for="rem" data-dxt="UseEOMap">Use EO Map</label>
+<br><br><input type="radio" id="rom" name = "rmm" checked> <label for="rom" data-dxt="UseOpenStreetMap">Use OpenStreet Map</label>
+<!--<br><br><input type="radio" id="rgm" name = "rmm">  <label>Use Google Maps</label> -->
+<hr>
+<button class ="buttonT"  onClick="openMap()" data-dxt="OpenMap">Open Map</button>
+<button class ="buttonT"  onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+</td></tr></table>
+</div>
+
+<div id="PlaceSelect" style="visibility : hidden; position : absolute; top : 50pt; left : 15pt" >
+<fieldset>
+<table class="popupmenu"  ><tr><td class="bookmark">
+<span style="color:blue" data-dxt="SelectaStop">Select a Stop:</span><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span><br>
+<hr><input type="checkbox" id="bIncludeBuses" > <label for="bIncludeBuses">Include Local Bus Stops</label>
+<br><br><a href="javascript:pick(0)" title="Here" data-dxt="Here" >Here</a>
+<!--<br><br><a href="javascript:void(0)" title="Here" onClick="pick(0);return false;">Here</a> -->
+<!--<br><a href="javascript:pick(1)">North Station</a>
+<br><a href="javascript:pick(2)">South Station</a> -->
+<br><a href="javascript:pick(3)" data-dxt="Home">Home</a>
+<br><a href="javascript:pick(4)" data-dxt="Selected">Selected</a>
+<br><a href="javascript:selectFromMap()" data-dxt="SelectFromMap">Select From Map</a>
+<br><a href="javascript:showStopSearch()" data-dxt="SearchForStop">Search For Stop</a>
+<br><a href='javascript:whatsNearby()' data-dxt="WhatsNearby">What's Nearby</a>
+<hr><a href="javascript:pick(1)">Boston North Station</a>
+<br><a href="javascript:pick(2)">Boston South Station</a>
+<hr><a href="javascript:pick(6)">New York Penn -NY</a>
+<br><a href="javascript:pick(7)">New York Grand Central -NY</a>
+<br><a href="javascript:pick(10)">Jamaica -NY</a>
+<br><a href="javascript:pick(8)">Secaucus -NJ</a>
+<br><a href="javascript:pick(9)">New Haven-CT</a>
+<br><a href="javascript:pick(11)">Chicago</a>
+<br><a href="javascript:pick(12)">San Francisco</a>
+<br><a href="javascript:pick(13)">Los Angeles</a>
+<br><a href="javascript:pick(14)">Seattle</a>
+<br><a href="javascript:pick(15)">Denver</a>
+<br><a href="javascript:pick(16)">Dallas</a>
+<br><a href="javascript:pick(17)">New Orleans</a>
+<br><a href="javascript:pick(18)">Washington DC</a>
+<br><a href="javascript:pick(19)">Philadelphia</a>
+<br><a href="javascript:pick(20)">Miami</a>
+<br><a href="javascript:pick(21)">St Louis</a>
+<hr><a href="javascript:reportFacility()" data-dxt="ReportonFacilities">Report on Facilities</a>
+<br><a href='javascript:getPathway()' data-dxt="StationPathways">Station Pathways</a>
+<hr><a href="javascript:stopsBack()" data-dxt="Back">Back</a>
+<br><a href='javascript:stopsForward()' data-dxt="Forward">Forward</a>
+<br><a href="javascript:menu('Favs')" data-dxt="Favorites">Favorites Save/Open</a>
+<hr><select id="atx" onChange="updateStopList()" ><option selected>Amtrak</option><option>MA / Commuter Rail</option><option>MBTA Subway</option><option>Logan Airport</option><option>Boats</option><option>Tourists</option><option>Colleges</option><option>Cape Cod</option>
+<option>Maine</option><option>New Hampshire</option><option>Vermont</option><option>Rhode Island</option><option>Connecticut</option><option>New York</option><option>NYC</option>
+<option>Long Island</option><option>New Jersey</option><option> Delaware, Maryland, DC</option>
+<option>Canada</option><option>Amtrak / MBTA</option><option>Subway 2</option><option>Peter Pan Bus</option><option>Berkshires RTA Bus</option><option>Cape Cod RTA Bus</option><option>Plymouth Brockton Bus</option><option>Merrimack Valley RTA</option><option>Lowell RTA</option><option>MetroWest RTA</option><option>PATH</option><option>Cape Ann</option>
+<option>TriRail (Florida)</option><option>MetroRail (Miami)</option><option>Brightline Florida</option><option>Coastline (CA)</option><option>Metrolink (CA)</option><option>LA Metro (CA)</option><option>Caltrain (CA)</option><option>BART (CA)</option><option>SFMTA (CA)</option><option>Sonoma (CA) SMART</option><option>Metra (IL)</option><option>Chicago Transit</option><option>Chicago Tourist</option><option>SEPTA (PA)</option><option>Sound (WA)</option><option>Washington-DC Metro</option><option>VRE</option><option>Metro St. Louis</option><option>MARTA (Atlanta)</option>
+<option>Santa Clara VTA</option>
+</select>
+<br><select id="stopsel" size = 8 style="width: 250px;">
+</select>
+<br><br><button class ="buttonT"  onClick="selStop()" data-dxt="Select">Select</button>
+<button class ="buttonT"  onClick="CloseMenu()" data-dxt="Cancel">Cancel</button>
+</td></tr></table>
+</fieldset>
+</div>
+
+<div id="Dev" style="visibility : hidden; position : absolute; top : 50pt; left : 60pt" >
+<table class="popupmenu"><tr><td class="bookmark">
+<br><a href="javascript:test14()">Create eo_tsked.js</a> 
+<br><a href="javascript:calcFacilities2()">Create Facilities Data</a> 
+<br><a href="javascript:calcFacilities3()">Update stopsConnecting facilities</a> 
+<br><a href="javascript:makeTTservice()">Make tt array</a> 
+<br><a href="javascript:makeTTservice2()">Make tt array2</a> 
+<br><a href="javascript:makeSampleTripArray()">Make trip array</a> 
+<br><a href="javascript:dev(20)">Make MBTA stops info</a> 
+<!--<br><a href="javascript:updateMBTABusStops()">Update MBTA stops info</a> -->
+<br><a href="javascript:updateMBTAStops()">Update MBTA stops info</a> 
+<br><a href="javascript:fixStopBus2()">Fix bus stops2</a> 
+<br>- 
+<br><a href="javascript:dev(15)">Create eo_mnrsked.js</a> 
+<br><a href="javascript:dev(16)">Create eo_PP.js</a> 
+<br><a href="javascript:dev(17)">Create eo_BRTA.js</a> 
+<br><a href="javascript:dev(18)">Create eo_CCRTA.js</a> 
+<br><a href="javascript:dev(19)">Create eo_PB.js</a> 
+<br><a href="javascript:dev(21)">Create eo_SLE.js</a> 
+<br><a href="javascript:dev(22)">Create eo_CT.js</a> 
+<br><a href="javascript:dev(25)">Create eo_MVRTA.js</a> 
+<br><a href="javascript:dev(26)">Create eo_LRTA.js</a> 
+<br><a href="javascript:dev(27)">Create eo_MWRTA.js</a> 
+<br><a href="javascript:dev(29)">Create eo_HL.js</a> 
+<br><a href="javascript:dev(30)">Create eo_Mont.js</a> 
+<br><a href="javascript:dev(31)">Create eo_NJ.js</a> 
+<br><a href="javascript:dev(33)">Create eo_path.js</a> 
+<br><a href="javascript:dev(34)">Create eo_LIRR.js</a> 
+<br><a href="javascript:dev3(90)">Create eo_NJBus_cal.js</a> 
+<br><a href="javascript:dev3(94)">Create eo_PVRTA_cal.js</a> 
+<br><a href="javascript:dev3(96)">Create eo_RIPTA_routes.js</a> 
+<br><a href="javascript:dev3(97)">Create eo_CATA.js</a> 
+<br><a href="javascript:dev3(106)">Create eo_SMART.js</a> 
+<br><a href="javascript:dev3(104)">Create eo_AM_routes.js</a> <!-- was 98 -->
+<br><a href="javascript:dev3(100)">Create eo_NCTD.js</a> 
+<br><a href="javascript:dev3(101)">Create eo_Metrolink.js</a> 
+<br><a href="javascript:dev3(102)">Create eo_Caltrain.js</a> 
+<br><a href="javascript:dev3(103)">Create eo_Metra.js</a> 
+<br><a href="javascript:dev3(99)">Create eo_SSL.js</a> 
+<br><a href="javascript:dev3(105)">Create eo_BART.js</a> 
+<br><a href="javascript:dev3(81)">Create eo_BSCC.js</a> 
+<br><a href="javascript:getRealTimeFeed(2)">Realtime test</a> 
+<br><a href="javascript:updateStops(stops_pb)">Update PB Stops</a> 
+<br><a href="javascript:updatePPstops()">Update PP Stops</a> 
+<br><a href="javascript:updateBRTAstops()">Update BRTA Stops</a> 
+<br><a href="javascript:updateNYTstops()">Update NYT Stops</a> 
+<br><a href="javascript:updateStops(stops_mvrta)">Update MVRTA Stops</a> 
+<br><a href="javascript:updateCCstops2()">Update CCRTA Stops</a> 
+<br><a href="javascript:updateStops(stops_lrta)">Update LRTA Stops</a> 
+<br><a href="javascript:updateStops(stops_metrowest)">Update MetroWest Stops</a> 
+<br><a href="javascript:updateStops(stops_path)">Update PATH Stops</a> 
+<br><a href="javascript:updateStops(stops_LI)">Update LI Stops</a> 
+<br><a href="javascript:map.reportTiles()">Report Tiles</a> 
+<br><a href="javascript:plotaShape()">Plot a Shape</a> 
+<br><a href="javascript:getMNRFeed()">Get MNR Feed</a> 
+<br><a href="javascript:updateNJstops()">Update NJ stops</a> 
+<br><a href="javascript:updateMBTAParents()">Update MBTA P</a> 
+<br><a href="javascript:makeNYCHeadsigns()">Make NYC headsigs</a> 
+<br><a href="javascript:makeNYCtransfers()">Make NYC transfers</a> 
+<br><a href="javascript:updateNJBusstops()">Update NJ Bus</a> 
+<br><a href="javascript:addNJBusStops()">Add NJ bus stops</a> 
+<br><a href="javascript:updatePVRTABusstops()">Update PVRTA Bus</a> 
+<br><a href="javascript:updateRIPTABusstops()">Update RIPTA Bus</a> 
+<br><a href="javascript:makeMBTA2()">Update MBTA</a> 
+<br><a href="javascript:makeMBTAids()">Make MBTA ids</a> 
+<br><a href="javascript:updateMBTAgtfs()">Update MBTA GTFS</a>
+<br><a href="javascript:updateCATAstops()">Update CATA Stops</a> 
+<br><a href="javascript:updateAMstops()">Update AMTRAK Stops</a> 
+<br><a href="javascript:makeTimezones()">Update AMTRAK timezones</a> 
+<br><a href="javascript:updateMetrolinkstops()">Update Metrolink Stops</a> 
+<br><a href="javascript:updateCaltrainstops()">Update Caltrain Stops</a> 
+<br><a href="javascript:updateMetrastops()">Update Metra Stops</a> 
+<!--<br><a href="javascript:updateCTAstops2()">Update CTA Stops</a> -->
+<!--<br><a href="javascript:updateCTABusstops()">Update CTA BusStops</a> -->
+<br><a href="javascript:updateSFBusstops3()">Update SFMTA Stops</a> 
+<br><a href="javascript:formatTZ()">Format TZ</a> 
+<br><a href="javascript:reportText()">Report text</a> 
+<br><a href="javascript:getMetraGTFS()">Get Metra GTFS</a> 
+<br><a href="javascript:dev3(89)">Create eo_CTABus.js</a> 
+<br><a href="javascript:dev3(88)">Create LAM_cal.js</a> 
+<br><a href="javascript:dev3(87)">Create LAMB_cal.js</a> 
+<br><a href="javascript:updateLAMBstops()">Update LAMB stops</a> 
+<br><a href="javascript:dev3(86)">Create Via_cal.js</a> 
+<br><a href="javascript:updateVIAstops()">Update VIA stops</a> 
+<br><a href="javascript:dev3(85)">Create SFMTA_cal.js</a> 
+<br><a href="javascript:dev3(84)">Create eo_SEPTA.js</a> 
+<br><a href="javascript:updateSEPTAstops()">Update SEPTA stops</a> 
+<br><a href="javascript:dev3(83)">Create MDC_cal.js</a> 
+<br><a href="javascript:dev3(82)">Create MTABus_cal.js</a> 
+<br><a href="javascript:updateLAgtfs()">Update LA GTFS</a> 
+<hr><a href="javascript:CloseMenu()" data-dxt="Close">Close</a>
+</td></tr></table>
+</div>
+
+</div><!-- end menus -->
+
+</main>
+<aside class="astyle">
+<!--<div class="ad" style="background-color: green">eo Travel News</div> -->
+<div class="textstuff">
+<h2 data-dxt="TransitLinks">Transit Links</h2> <span data-dxt="@7">Visit these web sites for ticket, status and other information:</span>
+<br><br>
+<details open><summary data-dxt="RailLines">Rail Lines</summary>
+<br><a href="https://www.acerail.com"  style="color:blue" target="g">ACE Rail (CA) </a>
+<br><br><a href="https://www.amtrak.com"  style="color:blue" target="g">AMTRAK </a>
+<br><br><a href="https://www.bart.gov/" style="color:blue" target="g">Bay Area Rapid Transit (BART) (CA)</a>
+<br><br><a href="https://www.gobrightline.com/" style="color:blue" target="g">Brightline (FL)</a>
+<br><br><a href="https://www.caltrain.com/" style="color:blue" target="g">Caltrain (Rail) (CA)</a>
+<br><br><a href="https://capeflyer.com" style="color:blue" target="g">Cape Flyer (Seasonal Boston - Hyannis train)</a>
+<br><br><a href="https://www.transitchicago.com/" style="color:blue" target="g">Chicago Transit Authority</a>
+<br><br><a href="https://www.hartfordline.com/" style="color:blue" target="g">CT rail / Hartford Line</a>
+<br><br><a href="https://www.dart.org/" style="color:blue" target="g">Dallas Area Rapid Transit (DART)</a>
+<br><br><a href="https://www.rtd-denver.com/" style="color:blue" target="g">Denver RTD (CO)</a>
+<br><br><a href="https://www.metro.net/" style="color:blue" target="g">LA Metro (CA)</a>
+<br><br><a href="https://www.mta.info/lirr" style="color:blue" target="g">Long Island Railroad (MTA) (NY)</a>
+<br><br><a href="http://www.mtamaryland.com/index_cfm/"  style="color:blue" target="g">Maryland Transit (MARC) (MD) </a>
+<br><br><a href="http://www.itsmarta.com/"  style="color:blue" target="g">MARTA Atlanta (GA) </a>
+<br><br><a href="https://www.mbta.com"  style="color:blue" target="g">MBTA (MA) </a>
+<br><br><a href="https://www.metrarail.com/" style="color:blue" target="g">Metra Rail (Chicago)</a>
+<br><br><a href="https://metrolinktrains.com/" style="color:blue" target="g">Metrolink (CA)</a>
+<br><br><a href="https://www.mta.info/mnr" style="color:blue" target="g">Metro North Rail (MTA) (NY)</a>
+<br><br><a href="https://www.miamidade.gov/global/transportation/metrorail.page" style="color:blue" target="g">Metrorail (Miami-Dade)(Miami FL)</a>
+<br><br><a href="https://www.mta.info/" style="color:blue" target="g">MTA (Subway) (NY)</a>
+<br><br><a href="https://www.metrostlouis.org/" style="color:blue" target="g">Metro St. Louis (MO)</a>
+<br><br><a href="https://gonctd.com/services/coaster-commuter-rail/" style="color:blue" target="g">NCTD COASTER and SPRINTER Commuter Rail (CA)</a>
+<br><br><a href="https://www.njtransit.com"  style="color:blue" target="g">NJ Transit </a>
+<br><br><a href="https://www.panynj.gov/path/" style="color:blue" target="g">PATH - Port Authority NY-NJ</a>
+<br><br><a href="https://www.riometro.org/" style="color:blue" target="g">Rio Metro (NM)</a>
+<br><br><a href="https://www.rtd-denver.com/" style="color:blue" target="g">RTD Denver</a>
+<br><br><a href="https://www.sfmta.com/" style="color:blue" target="g">San Francisco Municipal Transportation Agency (SFMTA) (CA)</a>
+<br><br><a href="https://www.septa.org/" style="color:blue" target="g">SEPTA - Southeastern Pennsylvania Transportation Authority (PA)</a>
+<br><br><a href="https://www.shorelineeast.com/" style="color:blue" target="g">Shore Line East (CT)</a>
+<br><br><a href="https://www.sonomamarintrain.org/" style="color:blue" target="g">Sonoma - Marin Area Rail Transit SMART (CA)</a>
+<br><br><a href="https://www.soundtransit.org/" style="color:blue" target="g">Sound Transit (Puget Sound WA)</a>
+<br><br><a href="https://sunrail.com/" style="color:blue" target="g">SunRail (FL)</a>
+<br><br><a href="https://www.tri-rail.com/" style="color:blue" target="g">Tri-Rail (Miami FL)
+</a>
+<br><br><a href="https://trinityrailwayexpress.org/" style="color:blue" target="g">Trinty Railway Express (TRE) (Ft Worth TX)</a>
+<br><br><a href="https://www.rideuta.com/" style="color:blue" target="g">UTA (Utah)</a>
+<br><br><a href="https://www.viarail.ca/" style="color:blue" target="g">Via Rail</a>
+<br><br><a href="https://www.vre.org/" style="color:blue" target="g">Virginia Railway Express (VRE)</a>
+<br><br><a href="https://www.vta.org/" style="color:blue" target="g">VTA Santa Clara Valley Transportation Authority</a>
+<br><br><a href="https://www.wmata.com/" style="color:blue" target="g">Washington-DC Metro (WMATA)</a>
+</details>
+<br><div style="float:right;"><a href="javascript:window.scrollTo(0,0)" data-dxt="Top">Top</a></div>
+<details><summary data-dxt="BusLines">Bus Lines</summary>
+<br><a href="https://www.berkshirerta.com"  style="color:blue" target="g">Berkshire Regional Transit Authority (BRTA)</a>
+<br><br><a href="https://www.canntran.com"  style="color:blue" target="g">Cape Ann Transportation Authority</a>
+<br><br><a href="https://www.capecodrta.org"  style="color:blue" target="g">Cape Cod Regional Transit Authority</a>
+<br><br><a href="https://www.greyhound.com" style="color:blue" target="g">Greyhound Bus</a>
+<br><br><a href="https://www.lrta.com/" style="color:blue" target="g">Lowell Regional Transit Authority</a>
+<br><br><a href="https://www.massport.com/logan-airport/to-from-logan/transportation-options/logan-express/"  style="color:blue" target="g">Massport's Logan Express</a>
+<br><br><a href="https://www.mvrta.com/" style="color:blue" target="g">Merrimack Valley Regional Transit Authority</a>
+<br><br><a href="https://www.metrostlouis.org/" style="color:blue" target="g">Metro St. Louis (MO)</a>
+<br><br><a href="https://www.mwrta.com/" style="color:blue" target="g">MetroWest Regional Transit Authority</a>
+<br><br><a href="https://peterpanbus.com" style="color:blue" target="g">Peter Pan Bus</a>
+<br><br><a href="https://www.pvta.com/" style="color:blue" target="g">Pioneer Valley Transit Authority</a>
+<br><br><a href="https://www.p-b.com"  style="color:blue" target="g">Plymouth and Brockton Street Railway Co.</a>
+<br><br><a href="https://www.ripta.com" style="color:blue" target="g">RIPTA - Rhode Island Public Transit</a>
+</details>
+<br><div style="float:right;"><a href="javascript:window.scrollTo(0,0)">Top</a></div>
+<details><summary data-dxt="Ferries">Ferries</summary>
+<br><a href="https://www.steamshipauthority.com" style="color:blue" target="g">The Steamship Authority (Hyannis - Nantucket ferry)</a>
+<br><br><a href="https://www.hylinecruises.com" style="color:blue" target="g">Hy-Line Cruises (Hyannis - Oak Bluffs and Hyannis - Natucket ferry)</a>
+<br><br><a href="https://www.baystatecruisecompany.com" style="color:blue" target="g">Bay State Cruise Co. (Provincetown ferry - Boston-Seaport)</a>
+<br><br><a href="https://www.bostonharborcruises.com" style="color:blue" target="g">Boston Harbor Cruises (Provincetown ferry - Long Wharf)</a>
+<br><br><a href="https://www.goldengate.org/" style="color:blue" target="g">Golden Gate Bridge Hwy and Transp District (Ferries) (CA)</a>
+<br><br><a href="https://www.ferries.ca/thecat/" style="color:blue" target="g">The Cat (Seasonal Bar Harbor ME - Yarmouth NS ferry)</a>
+</details>
+</div>
+<div class="textstuff">
+<h2>Credits</h2>
+MBTA schedule, prediction and alert data is provided under license by the Massachusetts Department of Transportation (Mass DOT). Visit <a href="https://www.mbta.com" style="color:blue" target="g"> www.mbta.com</a> for ticket and other information.
+<br><br>For NJ data: Data provided by NJ TRANSIT, which is the sole owner of the Data. Visit <a href="https://www.njtransit.com" style="color:blue" target="g"> www.njtransit.com</a> for ticket and other information.
+<br><br>For SF Muni and Caltrain real time: Data provided by 511.org. Visit <a href="https://www.511.org" style="color:blue" target="g"> www.511.com</a> for San Francisco Bay transit information.
+<br><br>Map tiles are &copy; OpenStreetMap contributors. See<a href="https://www.openstreetmap.org/copyright" target="f" style="color:blue"> copyright notice.</a>
+<br><br>This website/app is not sponsored, affiliated or operated by Metra or any other agency.
+<br><br><a href="https://github.com/syl22-00/pocketsphinx.js" target="f" style="color:blue">PocketSphinx license.</a>
+<div style="float:right;"><a href="javascript:window.scrollTo(0,0)" data-dxt="Top">Top</a></div>
+
+</div>
+</aside>
+
+
+
+<footer style="float:left">
+eightolives <br>
+<a href="javascript:window.scrollTo(0,0)"><img src="images/eofavb.png" width='32' height='32' alt="Top" ></a>
+&nbsp;&nbsp;copyright &copy; 2026 William Kaupinis, All Rights Reserved
+<br><a href="https://www.eightolives.com/index.htm">Full Site</a> &nbsp;&nbsp;<a href="https://www.eightolives.com/privacyTrains.htm">Privacy Statement</a> &nbsp;&nbsp;
+<a href="https://www.eightolives.com/termsofuse.htm">Terms of Use</a> &nbsp;&nbsp;
+<a href="javascript:sendFeedback()">Web Site Feedback</a> &nbsp;&nbsp;
+<a href="https://www.eightolives.com/profile.htm">About Us</a>&nbsp;&nbsp;
+<a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fwww.eightolives.com%2Fdocs%2FTrains%2FTrains.htm&profile=css3&usermedium=all&warning=1&vextwarning=&lang=en">CSS</a>&nbsp;&nbsp;
+<a href="http://validator.w3.org/check?uri=http%3A%2F%2Fwww.eightolives.com%2Fdocs%2FTrains%2FTrains.htm">HTML5</a>
+</footer>
+
+<script defer src="js/eo_TrainsBase1.js"></script>
+<script defer src="js/eo_time.js"></script>
+<script defer src="js/eo_springy.js"></script>
+<script defer src="js/eo_springyui.js"></script> 
+<!--<script defer src="js/eo_Trains.js"></script> -->
+
+<script src="js/eo_i18n.js"></script>
+<script src="js/eo_i18n_support.js"></script>
+
+
+<script src="js/eo_lang.js"></script>
+<script src="js/eo_lang1.js"></script>
+<script src="js/eo_lang2.js"></script>
+<script src="js/eo_lang3.js"></script>
+<script src="js/eo_lang4.js"></script>
+<script src="js/eo_lang5.js"></script>
+<script src="js/eo_lang6.js"></script>
+<script defer src="js/eo_eoservice.js"></script>
+<script defer src="js/eo_MBTA_Stops.js"></script>
+<script defer src="js/eo_trains31a.js"></script>
+<script defer src="js/eo_trains33.js"></script>
+<script defer src="js/eo_TrainsData4.js"></script>
+<script defer src="js/eo_service6.js"></script>
+<script defer src="js/eo_map.js"></script>
+<script defer src="js/eo_audio.js"></script>
+<script defer src="js/eo_alerts.js"></script>
+<script defer src="js/eo_speech.js"></script>
+<script defer src="js/eo_NYC_stopsG.js"></script>
+<script defer src="js/eo_NYC_routes.js"></script>
+<script defer src="js/eo_nych.js"></script>
+<script defer src="js/eo_CaltrainStops.js"></script>
+<script defer src="js/eo_MetraStops.js"></script>
+<script defer src="js/eo_CTA.js"></script>
+<script defer src="js/audioRecorder.js"></script>
+<script defer src="js/callbackManager.js"></script>
+<script defer src="js/eo_images.js"></script>
+<script defer src="js/eo_VIA.js"></script>
+<script defer src="js/eo_AMTRAK.js"></script>
+<script defer src="js/eo_LIRR.js"></script> 
+
+
+<script defer src="js/eo_SteamshipAuth.js"></script> 
+<script defer src="js/eo_LAMB_cal.js"></script>
+<script defer src="js/eo_PP.js"></script>
+<script defer src="js/eo_BSCC.js"></script>
+<script defer src="js/eo_BHT.js"></script>
+<script defer src="js/eo_SLE.js"></script>
+<script defer src="js/eo_CT.js"></script>
+<script defer src="js/eo_CCRTA.js"></script>
+<script defer src="js/eo_BL.js"></script>
+
+
+<script defer src="js/eo_conn5.js"></script>
+<script defer src="js/eo_pathway.js"></script> 
+<script src="js/eo_Carriers.js"></script> 
+<script src="js/eo_wx.js"></script> 
+<script src="js/eo_Bus.js"></script> 
+<script src="js/eo_idb.js"></script> 
+
+</body></html>
