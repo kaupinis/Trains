@@ -187,7 +187,7 @@ let bCompassEnabled = false;
 let bOnLine = false;
 let bNetFail = false;
 let bE = false;
-let bUseFetch = false;
+let bUseFetch = true;
 let bD1Refresh = false;
 let bgotData = false;
 let LegStartid = null;
@@ -996,7 +996,7 @@ Xpos = 0;
 Ypos = 0;
 Xposlast = 0;
 Yposlast = 0;
-bUseFetch = false;
+bUseFetch = true;
 bD1Refresh = false;
 LegStartid = null;
 LegDestid = null;
@@ -1092,7 +1092,7 @@ if(ipod)
 }
 else procBeep();
 
-Xplaces = ["Here", "North Station", "South Station", "Home", "Select From List", "Selected","New York Penn Station Amtrak",  "New York-Grand-Central-NY", "Secaucus (Upper Level) -NJ", "New Haven-CT", "Jamaica-NY",  "Chicago-IL Union Station","San Francisco Embarcadero -1 BART","Los Angeles-CA Union Station", "Seattle King Street Station-WA", "Denver Union Station-CO", "Dallas-TX Union Station", "New Orleans-LA Union Passenger Terminal", "Washington-DC Union Station", "Philadelphia-PA 30th Street Station Amtrak", "Miami-FL Amtrak Station", "St. Louis-MO Gateway AMTRAK Station"];
+Xplaces = ["Here", "North Station", "South Station", "Home", "Select From List", "Selected","New York Penn Station Amtrak",  "New York-Grand-Central-NY", "Secaucus (Upper Level) -NJ", "New Haven-CT", "Jamaica-NY",  "Chicago-IL Union Station","San Francisco Embarcadero -1 BART","Los Angeles-CA Union Station", "Seattle King Street Station-WA", "Denver Union Station-CO", "Dallas-TX Union Station", "New Orleans-LA Union Passenger Terminal", "Washington-DC Union Station", "Philadelphia-PA 30th Street Station Amtrak", "Miami-FL Amtrak Station", "St. Louis-MO Gateway AMTRAK Station", "Paris_Est TER"];
 
 document.getElementById("wdmi").value = WALK_LIMIT;
 document.getElementById("XPOS").value = 0; 
@@ -1191,7 +1191,7 @@ if(ilfn != -1)
   }
 }
 
-if(typeof window.fetch !== 'undefined') bUseFetch = true;
+//if(typeof window.fetch !== 'undefined') bUseFetch = true;
 //report("UseFetch = " + bUseFetch);
 if(window.Worker)
 {
@@ -1326,6 +1326,7 @@ function getVoiceArray()
 
 function checkSW()
 {
+    bsw = false;
 if (('serviceWorker' in navigator) && bsw)
 {
   report("serviceWorker is supported");
@@ -5827,6 +5828,7 @@ if(DISPLAYTYPE == 0)
       /*if(((isOther(stop_id)  || (isAssociate(stop_id))) && (stop_id != "place-aqucl") && (stop_id != "Boat-Logan")) || (Number(stop_id) > 794900) || (stop_id.indexOf("NYT") == 0) || (Number(stop_id) == 786487) || (Number(stop_id) == 786488))
           */
   {
+//    report("5831 " + serviceE);
     if(serviceE != null)
     {
       pcolor = "red";
@@ -5882,6 +5884,7 @@ if(DISPLAYTYPE == 0)
  //      });    
    }
    */
+   if(p == null) report("5886 " + stop_id);
    p.then(function(t){
 //   report("got here 333 " + JSON.stringify(t, null, 4));
     if(typeof t === 'undefined') 
@@ -6183,7 +6186,7 @@ if(DISPLAYTYPE == 0)
         if((tu >= 0) && (tp.route_id.indexOf("AM") != 0)) bGetRefresh = false;
         if((tu < -60) && !bssa) bHideEntry = true;
       }
-      
+//      report("6189 tu = " + tu + " tg = " + tg + " bHideEntry = " + bHideEntry + " " + tp.tztrip);
       bUT = false;
       let bCancelled = false;
       if(typeof tp.status !== 'undefined')
@@ -9366,6 +9369,9 @@ function pick(n)
   case 21: pname = "St Louis-MO Gateway Amtrak Station";
     pid = "AMSSTL";
     break;
+  case 22: pname = "Paris_Est TER";
+    pid = "SNCF_Train_TER_87113001";
+    break;
   default: 
     break;
   }
@@ -9492,8 +9498,8 @@ function updatePlaces(d)
   let k = d.length;
   clearArray(Xplaces); 
   Xplaces.push("Here");
-  Xplaces.push("North Station");
-  Xplaces.push("South Station");
+  Xplaces.push("Boston North Station");
+  Xplaces.push("Boston South Station");
   Xplaces.push("Home (Default)");
   Xplaces.push("Selected");
   Xplaces.push("0");
@@ -9513,6 +9519,7 @@ function updatePlaces(d)
   Xplaces.push("Philadelphia-PA 30th Street Station Amtrak");
   Xplaces.push("Miami-FL Amtrak Station");
   Xplaces.push("St. Louis-MO Gateway AMTRAK Station");
+  Xplaces.push("Paris_Est TER");
   i = 0;
   while(i < k)
   {
