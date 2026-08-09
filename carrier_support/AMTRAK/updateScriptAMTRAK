@@ -1,0 +1,6 @@
+# update script for AMTRAK gtfs files
+
+sed -e 's/^/AMR/' data/trips.txt > data/trips.csv
+sed -e 's/^/AMS/' data/shapes.txt > data/shapes.csv
+sed -e 's/^/AMR/' data/routes.txt > data/routes.csv
+sed -e 's/^/AMR/' data/stop_times.txt > data/stop_times.csv

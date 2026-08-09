@@ -1,0 +1,4 @@
+# makeAMTRAKTripsFiles
+cat eo_pre.js eo_AM_cal.js eo_AMTRAK_Stops.js eo_AMTRAK_Routes.js eo_AMTRAK_RouteStops1.js makeAMTRAKTripsFile1.js > makeAMTRAKTripsFile2.js
+$NODEJS_HOME/bin/node makeAMTRAKTripsFile2.js 
+

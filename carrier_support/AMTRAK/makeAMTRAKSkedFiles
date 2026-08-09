@@ -1,0 +1,3 @@
+# makeAMTRAKSkedFiles
+$NODEJS_HOME/bin/node makeAMTRAKSkedFiles.js 
+

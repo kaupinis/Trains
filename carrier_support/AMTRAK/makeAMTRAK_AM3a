@@ -1,0 +1,5 @@
+# makeAMTRAK_AM3a
+#cat eo_AM_cal.js eo_AMTRAK_Routes.js eo_AMTRAK_RouteStops1.js eo_AM3b.js > eo_AM3a.js
+cat eo_AM_cal.js eo_AMTRAK_Routes.js eo_AM3b.js > eo_AMTRAK.js
+
+

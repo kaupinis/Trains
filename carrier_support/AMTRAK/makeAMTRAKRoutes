@@ -1,0 +1,3 @@
+# makeAMTRAKRoutes
+$NODEJS_HOME/bin/node makeAMTRAKRoutes.js 
+

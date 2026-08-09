@@ -1,0 +1,5 @@
+# getGTFS
+G_URL="https://content.amtrak.com/content/gtfs/GTFS.zip"
+G_PATH="AMTRAK_GTFS.zip"
+$NODEJS_HOME/bin/node getGTFS.js $G_URL $G_PATH
+
