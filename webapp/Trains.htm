@@ -199,6 +199,7 @@ Clicking most items will display popup menus with more options. Click the stop l
 <hr>Colors: <select id="palettesel" onChange="setPalette2()"></select>
 <hr><input type="checkbox" id="eaudio" onClick="enaudio()"><label for="eaudio" data-dxt="EnableAudio"> Enable Audio</label>
 <br><select id="vselect" onChange="populateVoices()"></select>
+<br><input type="checkbox" id="bVoiceBubble" onChange="changedBubble()" checked><label for="bVoiceBubble" data-dxt="ShowVoiceBubble"> Show Voice Bubble</label>
 <br><input type="checkbox" id="sprec" onClick="enableSpeech()"> <label for="sprec" data-dxt="Recognition">Recognition</label>
 <hr><a href="javascript:lastMonitor()" data-dxt="LastMonitor">Last Monitor</a>
 <br><a href="javascript:stopMonitorMode()" data-dxt="StopMonitorMode">Stop Monitor Mode</a>
@@ -245,6 +246,7 @@ Clicking most items will display popup menus with more options. Click the stop l
 
 <div id="Preferences" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
 <table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<!--<br><input type="checkbox" id="bVoiceBubble" onChange="changedBubble()"> Show Voice Bubble -->
 <br><input type="checkbox" id="bIncludeWx" onChange="changedWx()" checked> Weather Alerts
 <!-- <br><input type="checkbox" id="mnrp" checked> MNR Predictions
 <br><input type="checkbox" id="nysube" checked> NY Subway Predictions -->
@@ -613,7 +615,7 @@ Hours(0 - 23):&nbsp;<input type="text" id="thr" size = "2" value = "0">
 </div>
 
 <div id="Favs" style="visibility : hidden; position : absolute; top : 50pt; left : 60pt" >
-<table class="popupmenu"><tr><td class="bookmark">
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
 <a href="javascript:saveTrip(1,0)" data-dxt="SaveAsStop1">Save As Stop 1</a>
 <br><a href="javascript:saveTrip(2,0)" data-dxt="SaveAsStop2">Save As Stop 2</a>
 <hr><a href="javascript:openTrip(1,0)" data-dxt="OpenStop1">Open Stop 1</a>
@@ -658,8 +660,8 @@ Hours(0 - 23):&nbsp;<input type="text" id="thr" size = "2" value = "0">
 </div>
 
 <div id="ConnectionsDetails" style="visibility : hidden; position : absolute; top : 150pt; left : 20pt" >
-<table class="popupmenu"><tr><td class="bookmark">
-<a href="javascript:showConnections()" data-dxt="VIewConnections">View Connections</a>
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
+<a href="javascript:showConnections()" data-dxt="ViewConnections">View Connections</a>
 <hr><a href="javascript:plotConnections(1)" data-dxt="PlotDetails">Plot Details</a>
 <hr><a href="javascript:saveTrip(1,3)" data-dxt="SaveAsItinerary1">Save As Fav Itinerary 1</a>
 <hr><a href="javascript:saveTrip(2,3)" data-dxt="SaveAsItinerary2">Save As Fav Itinerary 2</a>
@@ -674,7 +676,7 @@ Hours(0 - 23):&nbsp;<input type="text" id="thr" size = "2" value = "0">
 <div id="Madj" style="visibility : hidden; position : fixed; top : 50pt; left : 15pt" >
 <fieldset>
 <table class="popupmenu"  ><tr><td class="bookmark">
-<span style="color:blue" data-dxt="AdjustDepartures">Adjust Departures</span><br>
+<span style="color:blue" data-dxt="AdjustDepartures">Adjust Departures</span><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span><br>
 <hr>
 <table><tr>
 <td style="text-align: right;" data-dxt="Adjust">Adjust:</td><td><select id="deptime" size = 1 style="width: 150px;"> <!--onChange="checkFrom()"> -->
@@ -716,7 +718,7 @@ Hours(0 - 23):&nbsp;<input type="text" id="thr" size = "2" value = "0">
 <div id="Notify" style="visibility : hidden; position : absolute; top : 50pt; left : 15pt" >
 <fieldset>
 <table class="popupmenu"  ><tr><td class="bookmark">
-<span style="color:blue" data-dxt="NotifyEvents">Notify Events</span><br>
+<span style="color:blue" data-dxt="NotifyEvents">Notify Events</span><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span><br>
 <hr>
 <select id="notifies" size = 1 style="width: 150px;" ><option>-</option></select>
 <br><br><button onClick="delSelNot()" data-dxt="DeleteNotification">Delete Notification</button>
@@ -729,7 +731,7 @@ Hours(0 - 23):&nbsp;<input type="text" id="thr" size = "2" value = "0">
 <div id="DepNot" style="visibility : hidden; position : absolute; top : 50pt; left : 15pt" >
 <fieldset>
 <table class="popupmenu"  ><tr><td class="bookmark">
-<span style="color:blue" data-dxt="AddDepartureNotification">Add Departure Notification</span><br>
+<span style="color:blue" data-dxt="AddDepartureNotification">Add Departure Notification</span><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span><br>
 <hr>
 <br><div id="wpl"></div>
 <br><div id="wpm"></div>
@@ -1033,6 +1035,13 @@ Map tiles &copy; OpenStreetMap contributors<br><br>Visit <a href= 'https://www.o
 </div>
 
 </div><!-- end menus -->
+
+<div id="bubble" style="position:fixed;  top:70vh; right: 90px; z-index: 20; visibility: hidden;">
+<div class="speech-bubble" id="bubble1" style="width: 200px; height: 100px;">
+<span style="float:right;font-size:10pt"><a href="javascript:CloseBubble()">X</a></span>
+</div>
+</div>
+
 
 </main>
 <aside class="astyle">
