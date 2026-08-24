@@ -313,6 +313,10 @@ let SunTimes = null;
 let CAVS = document.getElementById("Canvas0");
 let SPGYDIV = document.getElementById("spydiv");
 let FABMAX = document.getElementById("fabmax");
+let Bubble = document.getElementById("bubble");
+let Bubble1 = document.getElementById("bubble1");
+let BTO = null;
+let bBubbleTO = true;
 const MAPCACHE = 'eo_Trains_mapcache_2024'; 
 let LMD =[];
 let TOK = true;
@@ -507,6 +511,7 @@ else
 
 function updateMenuLangById(id)
 {
+    /*
   let k = MenuIndices.length; // from eo_lang.js
   let i = 1;
   let bx = true;
@@ -516,6 +521,7 @@ function updateMenuLangById(id)
     else i += 1;
   }
   if(!bx) updateMenuLang(i);
+  */
 //  else report("489 No menu lang for menu " + id);
 }
 
@@ -1588,8 +1594,7 @@ else
     document.getElementById("langsel").selectedIndex = SelectedLanguage;
   }
 }
-let id = eo_i18n.getIdFromIndex(SelectedLanguage);
-eo_i18n.updateLanguage(id).then(eo_i18n.updateLanguageContent()).catch((e) => {
+eo_i18n.updateLanguage(SelectedLanguage).then(eo_i18n.updateLanguageContent()).catch((e) => {
   report("1575 " + e);
   });
 
@@ -4639,6 +4644,7 @@ function updateTimeTick()
                   {
                   bNotifyPermission = true;
                   let notification = new Notification(NotText, opt);
+                  reportBubble(NotText);
 //                  setTimeout(notification.close.bind(notification), 4000);
                   updateNotifications();
                   }
@@ -4649,6 +4655,7 @@ function updateTimeTick()
           }
         }
         report("4619 " + notif[ii].d);
+        reportBubble(notif[ii].d);
         beep1();
       }
     }
@@ -12125,7 +12132,7 @@ function selectLang()
     getVoice(n);
   }
   report("11193 SelectedLanguage = " + SelectedLanguage + " " + n); 
-  eo_i18n.updateLanguage(n).then(() => {
+  eo_i18n.updateLanguage(SelectedLanguage).then(() => {
       eo_i18n.updateLanguageContent()
       report("12077 ");
     }).catch((e) => {
@@ -12286,7 +12293,7 @@ function say(txt)
       report("synth null, say redefine");
       synth = window.speechSynthesis; 
     }
-    if(typeof txt === 'undefined') report("10145 say(txt) txt undefined");
+    if(typeof txt === 'undefined') {report("10145 say(txt) txt undefined"); console.trace();}
     else if(typeof txt.split === 'undefined') report("10146 txt is " + txt);
     else if((synth != null) && (voices.length > 0))
     {
@@ -12308,7 +12315,9 @@ function say(txt)
           };
         if(j == sentences.length - 1) phrase.onend = resolve(sentence);
         report(sentence);
+ //       reportBubble(sentence);
         synth.speak(phrase);
+        reportBubble(sentence);
       }
     }
     else if(synth == null)reject("Speech error synth is null");
@@ -13125,3 +13134,37 @@ function removeLocal(fname)
 {
   if(navigator.cookieEnabled) localStorage.removeItem(fname);   
 }
+
+function reportBubble(s)
+{
+  if(s.length < 100)
+  {
+    if(BTO != null) 
+    {
+//      {clearTimeout(BTO); BTO = null;}
+      Bubble1.innerHTML += "<br>" + s;
+    }
+    else
+    {
+      let h = '<span style="float:right;font-size:10pt"><a href="javascript:CloseBubble()">X</a></span><br>';
+      h += s;
+      Bubble1.innerHTML = h;
+      Bubble.style.visibility = "visible";
+    }
+    if(bBubbleTO) BTO = setTimeout(CloseBubble, 10000);
+  }
+}
+
+function CloseBubble()
+{
+  Bubble.style.visibility = "hidden";  
+  BTO = null;
+}
+
+function changedBubble()
+{
+  bBubbleTO = document.getElementById("bVoiceBubble").checked;  
+}
+
+
+
