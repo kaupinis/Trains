@@ -38,6 +38,7 @@ MP[5][4] = [    // Nav
 
  // label
   "オーディオを有効にします",
+  "Show Voice Bubble",
   "音声認識",
 ];
 

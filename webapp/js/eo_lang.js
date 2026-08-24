@@ -639,6 +639,7 @@ MP[0][4] = [    // Nav
 
  // label
   " Enable Audio",
+  "Show Voice Bubble",
   "Recognition",
 ];
 

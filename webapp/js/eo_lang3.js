@@ -22,6 +22,7 @@ MP[3][4] = [        // Nav
    "Hilfe",
    "schließen",
    "Audio aktivieren",
+  "Show Voice Bubble",
    "Spracherkennung",
 ];
 

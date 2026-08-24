@@ -38,6 +38,7 @@ MP[6][4] = [    // Nav
 
  // label
   "启用音频",
+  "Show Voice Bubble",
   "语音识别",
 ];
 

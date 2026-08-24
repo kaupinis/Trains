@@ -31,6 +31,7 @@ MP[1][4] = [    // Nav
 
  // label
   "Habilitar audio",
+  "Show Voice Bubble",
   "Reconocimiento de voz",
 ];
 
