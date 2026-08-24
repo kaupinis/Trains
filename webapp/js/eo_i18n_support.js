@@ -22,6 +22,10 @@ function makeMessagesTemplate(mode)
         }
       }
       });
+  let r = {
+      lang: "en",
+      data: o
+  };
   clearReport();
-  report(JSON.stringify(o, null, 4));
+  report(JSON.stringify(r, null, 4));
 }

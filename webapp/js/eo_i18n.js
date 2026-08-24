@@ -1,75 +1,48 @@
 // eo_i18n.js
 
 class eo_i18n {
+    static SelectedLanguage = 0;
     static CurrentLanguage = "en-US";
     static CurrentRoot = "";  // "en"
-    static CurrentBase = "";  // https"//...
-    static Messages = [];
+    static CurrentBase = "https://www.eightolives.com/docs/Trains/_locales/";  // https"//...
     static CurrentMessages = null;
+    static CurrentLanguages = [];
     static Languages = ["en-US","es-ES", "fr-FR", "de-DE",  "it-IT", "ja-JP", "zh-CN"];
+    static Filenames = ["en/messages_en.json", "es/messages_es.json", "fr/messages_fr.json","de/messages_de.json", "it/messages_it.json", "ja/messages_ja.json", "zh/messages_zh.json"];
 
     static initializeLanguage() {
-        if(CurrentRoot == "")
-        {
-          let z = window.location.href;
-          eo_i18n.CurrentBase = z.substring(0,z.lastIndexOf("/"));
-          let j = id.indexOf("-");
-          if(j == -1) eo_i18n.CurrentRoot = eo_i18n.CurrentLanguage;
-          else eo_i18n.CurrentRoot = eo_i18n.CurrentLanguage.substring(0, j);
-          /*
-          try {
-            let langsel = document.getElementById('language-select');
-            if((typeof langsel !== 'undefined') && (langsel !=  null))
-            {
-              langsel.addEventListener('change',  eo_i18n.changeLanguage(e));
-            }
-
-          }
-          catch(e) {
-            report("14 " + e);
-          }
-          */
-        }
     }
 
     static getIdFromIndex(n) {
         return(eo_i18n.Languages[n]);
     }
 
-    static async updateLanguage(id) {
-        eo_i18n.CurrentLanguage = id;
-        let j = id.indexOf("-");
-        if(j == -1) eo_i18n.CurrentRoot = id;
-        else eo_i18n.CurrentRoot = id.substring(0, j);
-
-        let m = eo_i18n.Messages[eo_i18n.CurrentRoot];
-        if((typeof m === 'undefined'))
-        {
-          if(eo_i18n.CurrentBase.indexOf("http") == 0)
+    static updateLanguage(n) {
+        let p = new Promise(function(resolve, reject) {
+          if(typeof eo_i18n.CurrentLanguages[n] === 'undefined')
           {
-            let url = eo_i18n.CurrentBase + "_locales/" + eo_i18n.CurrentRoot + "/messages_" + eo_i18n.CurrentRoot + ".json"
-            let response = await fetch(url);
-            if(!response.ok)
-            {
-              report("43 " + response.status);
-            }
-            else
-            {
-              let result = await response.json().catch((e) => {
-                  report("59 " + e);
-                  return("");
-              });
-              if(result != "")
-              {
-                eo_i18n.Message[eo_i18n.CurrentRoot] = result;
-                eo_i18n.CurrentMessages = eo_i18n.Messages[eo_i18n.CurrentRoot];
-              }
-            }
+            let url = eo_i18n.CurrentBase + eo_i18n.Filenames[n];
+            report("25 url = " + url);
+            getJSONDataF(url).then( (result) => {
+                eo_i18n.CurrentLanguages[n] = result;
+                eo_i18n.CurrentMessages = eo_i18n.CurrentLanguages[n].data;
+                eo_i18n.SelectedLanguage = n;
+                resolve();
+            }).catch( (e) => {
+                document.getElementById("langsel").selectedIndex = 0;
+                SelectedLanguage = 0;
+                reject(e);
+            });
           }
-        }
-        else eo_i18n.CurrentMessages = m;
+          else
+          {
+            eo_i18n.CurrentMessages = eo_i18n.CurrentLanguages[n].data;   
+            resolve();
+          }
+        });
+        return(p);
     }
-
+    
     static updateLanguageContent()
     {
       if(eo_i18n.CurrentMessages != null)
@@ -78,7 +51,7 @@ class eo_i18n {
           const key = el.getAttribute('data-dxt');
           if((typeof key !== 'undefined') && (key != null))
           {
-            el.textContent = eo_i18n.getMessage(key);
+            el.textContent = eo_i18n.CurrentMessages[key];
           }
           });
       }
@@ -88,6 +61,23 @@ class eo_i18n {
         return(eo_i18n.CurrentMessages[key]);
     }
 
+}
+
+function getJSONDataF(u)
+{
+    let p = new Promise(function (resolve, reject) {
+        let p1 = fetch(u).then(function (response) {
+ //           report("95 u = " + u);
+            if (!response.ok)
+                reject("70 " + response.status);
+            else  {
+                resolve(response.json());
+            }
+        }).catch(function (error) {
+            reject("75 " + error);
+        });
+    });
+    return (p);
 }
 
 function changeLanguage(e)
