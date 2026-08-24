@@ -119,6 +119,7 @@ function sayI(txt, index)
     phrase.onend = function(){snd_end(); resolve();};
     synth.speak(phrase);
     report(txt);
+    reportBubble(txt);
   }
   });
   return(p);
@@ -1681,7 +1682,6 @@ function nextSndState(x1)
           }
           else if(x == 3)
           {
-              /*
              switch(CurrentPhrase)
             {
                 case 1: // train
@@ -1715,11 +1715,6 @@ function nextSndState(x1)
                 default:
                   break;
             }
-            */
-                 CurrentPhrase = 0;
-                  document.getElementById("spg").innerHTML = "Number? or sketch";
-                  setSndState(71);
-                  announcePad(1);
           }
           else if(x == 4)
           {
@@ -2228,20 +2223,17 @@ function nextSndState(x1)
           {
             if(CurrentPhrase == 0)
             {
-              setSndState(51); // search by guess
+              setSndState(50); // search by guess
               CurrentPhrase = 0;
-              announceSearch(1);
+              announceSearch(0);
             }
             else if(CurrentPhrase == 1) // search by sketch
             {
               if(wpad != null) closePad();
               writePad();
- //             setSndState(70);
+              setSndState(70);
               CurrentPhrase = 0;
               announcePad(0);
-              document.getElementById("spg").innerHTML = "Number? or sketch";
-              setSndState(71);
-              announcePad(1);
             }
             else if(CurrentPhrase == 2) // search by speak
             {
@@ -4010,7 +4002,7 @@ function makeSndTime(hh, mm, bPM)
     if(SelectedLanguage == 2)
     {
       sndtime = hrs + " heures " + min + " minutes";
-      if(b && !document.getElementById("t24cb").checked)
+      if(bPM && !document.getElementById("t24cb").checked)
       {
         sndtime += " après-midi";
       }
@@ -4936,7 +4928,7 @@ function announcePad(n)
   {
     say("Sketch each letter on the pad using straight vertical, straight horizontal or straight diagonal lines.");
     say("The letter 'O' is rectangular. The letter 'D' has one vertical and two diagonal lines.");
- //   announceSearch(0);
+    announceSearch(0);
   }
   else if(n == 1)
   {
