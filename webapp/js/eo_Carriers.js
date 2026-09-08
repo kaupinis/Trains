@@ -443,6 +443,38 @@ function getSupportedCarrierFromRouteId(route_id)
 
 let SupportedCarriers = [
 {
+    id: "SF",
+    name: "SF",
+    stop_prefix: "SF_",
+    route_prefix:"SF_",
+    trip_prefix: "SF_",
+    sourcefile: "eo_SFMTA2.js",
+    refstop: "SF_16992",
+    nlat: "",
+    nlon: "",
+    hasSked: true,
+    hasPred: false,
+    isDynamic: false,
+    loaded: false,
+    routes: []
+},
+{
+    id: "CAL",
+    name: "Caltrain",
+    stop_prefix: "CAL",
+    route_prefix:"CAL",
+    trip_prefix: "CAL",
+    sourcefile: "eo_Caltrain.js",
+    refstop: "CAL70011",
+    nlat: "",
+    nlon: "",
+    hasSked: true,
+    hasPred: false,
+    isDynamic: false,
+    loaded: false,
+    routes: []
+},
+{
     id: "SBB",
     name: "SBB",
     stop_prefix: "Z_",
