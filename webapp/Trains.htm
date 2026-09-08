@@ -201,6 +201,7 @@ Clicking most items will display popup menus with more options. Click the stop l
 <br><select id="vselect" onChange="populateVoices()"></select>
 <br><input type="checkbox" id="bVoiceBubble" onChange="changedBubble()" checked><label for="bVoiceBubble" data-dxt="ShowVoiceBubble"> Show Voice Bubble</label>
 <br><input type="checkbox" id="sprec" onClick="enableSpeech()"> <label for="sprec" data-dxt="Recognition">Recognition</label>
+<br><input type="checkbox" id="t24cb" onClick="refreshTime()"> <label for="t24cb" data-dxt="time24">24 Hour Time</label>
 <hr><a href="javascript:lastMonitor()" data-dxt="LastMonitor">Last Monitor</a>
 <br><a href="javascript:stopMonitorMode()" data-dxt="StopMonitorMode">Stop Monitor Mode</a>
 <hr><a href="javascript:menu('File')" data-dxt="File">File</a>
@@ -246,11 +247,9 @@ Clicking most items will display popup menus with more options. Click the stop l
 
 <div id="Preferences" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
 <table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
-<!--<br><input type="checkbox" id="bVoiceBubble" onChange="changedBubble()"> Show Voice Bubble -->
 <br><input type="checkbox" id="bIncludeWx" onChange="changedWx()" checked> Weather Alerts
 <!-- <br><input type="checkbox" id="mnrp" checked> MNR Predictions
 <br><input type="checkbox" id="nysube" checked> NY Subway Predictions -->
-<br><input type="checkbox" id="t24cb" onClick="refreshTime()"> 24 hour time
 <br><input type="checkbox" id="fol" onClick="checkConnection()" > <span data-dxt="AirplaneMode">Airplane Mode / Offline</span>
 <br><input type="checkbox" id="rp"> Report Prediction
 <br><input type="checkbox" id="mqe"> Marquee
@@ -341,7 +340,7 @@ onClick="CloseMenu()" data-dxt="KnownIssues">Known Issues</a>
 </div>
 
 <div id="File" style="visibility : hidden; position : absolute; top : 50pt; left : 30pt" >
-<table class="popupmenu"><tr><td class="bookmark">
+<table class="popupmenu"><tr><td class="bookmark"><span style="float:right;font-size:10pt"><a href="javascript:CloseMenu()">X</a></span>
 <a href="javascript:openLocal()" data-dxt="OpenLocal">Open Local</a>
 <br><a href="javascript:saveLocalFile()" data-dxt="SaveLocal">Save Local</a>
 <hr><a href="javascript:openFileFS()" data-dxt="openFS">Open FS</a>
@@ -1182,9 +1181,9 @@ eightolives <br>
 <script defer src="js/eo_images.js"></script>
 <script defer src="js/eo_VIA.js"></script>
 <script defer src="js/eo_AMTRAK.js"></script>
-<script defer src="js/eo_LIRR.js"></script> 
+<!-- <script defer src="js/eo_LIRR.js"></script> -->
 
-
+<!--
 <script defer src="js/eo_SteamshipAuth.js"></script> 
 <script defer src="js/eo_LAMB_cal.js"></script>
 <script defer src="js/eo_PP.js"></script>
@@ -1194,7 +1193,7 @@ eightolives <br>
 <script defer src="js/eo_CT.js"></script>
 <script defer src="js/eo_CCRTA.js"></script>
 <script defer src="js/eo_BL.js"></script>
-
+-->
 
 <script defer src="js/eo_conn5.js"></script>
 <script defer src="js/eo_pathway.js"></script> 
