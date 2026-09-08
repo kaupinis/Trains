@@ -56,9 +56,9 @@ function initCarriers()
 {
 Carriers.clear();
 Carriers.push(new Carrier1("AMTRAK", "AMTRAK", true, null));
-Carriers.push(new Carrier1("Peter Pan Bus", "PP", true, null));
-Carriers.push(new Carrier1("Long Island Railroad", "LI", true, null));
-Carriers.push(new Carrier1("WMATA", "WMATAB", true, null));
+//Carriers.push(new Carrier1("Peter Pan Bus", "PP", true, null));
+//Carriers.push(new Carrier1("Long Island Railroad", "LI", true, null));
+//Carriers.push(new Carrier1("WMATA", "WMATAB", true, null));
 }
 
 function isCarrierLoaded(id)
@@ -95,7 +95,7 @@ function checkLoadable(stop_id)
   if(!bProc && ((stop_id == "BNT-0000") || (stop_id == "NEC-2287") || (stop_id.indexOf("T_") == 0)) && !isCarrierLoaded("MBTA")) {p = loadCarrier("MBTA"); bProc =   true;}
   else if(!bProc && (stop_id.indexOf("B_") == 0) && !isCarrierLoaded("BART")) {p = loadCarrier("BART"); bProc =   true;}
   else if(!bProc && (stop_id.indexOf("DT_") == 0) && !isCarrierLoaded("DART")) {p = loadCarrier("DART"); bProc =   true;}
-  else if(!bProc && (stop_id.indexOf("LI") == 0) && !isCarrierLoaded("LI")) {p = loadCarrier("LI"); bProc = true;}
+  else if(!bProc && (stop_id.indexOf("LI") == 0) && !isCarrierLoaded("LIRR")) {p = loadCarrier("LIRR"); bProc = true;}
   else if(!bProc && (isMNRStop(stop_id))  && !isCarrierLoaded("MNR")) {p = loadCarrier("MNR"); bProc = true;}
   else if(!bProc && (stop_id.indexOf("SEP_") == 0) && !isCarrierLoaded("SEPTA")) {p = loadCarrier("SEPTA"); bProc = true;}
   else if(!bProc && (stop_id.indexOf("SMART") == 0) && !isCarrierLoaded("SMART")) {p = loadCarrier("SMART"); bProc = true;}
@@ -543,6 +543,7 @@ function loadCarrier(c)
     LCB = c;
     cccc = null;
     if(c == "MBTA") cccc = new Carrier1(c, c, false, "eo_MBTA.js");
+    else if(c == "LIRR") cccc = new Carrier1(c, c, false, "eo_LIRR.js");
     else if(c == "MVRTA") cccc = new Carrier1(c, c, false, "eo_MeVa.js");
     else if(c == "MEVA") cccc = new Carrier1(c, c, false, "eo_MeVa.js");
     else if(c == "LRTA") cccc = new Carrier1(c, c, false, "eo_LRTA.js");
@@ -1360,14 +1361,15 @@ AssociateService.prototype.getLIRRTripForTrip = function(GTrip)
 
 AssociateService.prototype.getBARTTripForTrip = function(GTrip, f1)
 {
-  let routes = serviceE.routes;
+  let routes = BART.routes;
+  let route = null;
   let t = null;
   let b = true;
-  let k = serviceE.routes.length;
+  let k = BART.routes.length;
   let i = 0;
   while(b && (i < k))
   {
-    let route = serviceE.routes[i];
+    route = BART.routes[i];
     if(route.route_id.indexOf("B_") == 0)
     {
       let ltrips = route.trips;
@@ -3163,7 +3165,7 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
    
   else if(bOnLine && (stop_id.indexOf("MTA") == 0))  
   {
-    let p = new Promise (function(resolve, reject){ 
+    p = new Promise (function(resolve, reject){ 
     checkLoadable(stop_id);
     getRealTimeDataA(706,  stop_id.substring(3)).then(function(feed) {
 //        report("2805 " + JSON.stringify(feed, null, 4));
@@ -3299,7 +3301,8 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
 //  else if(bOnLine && (stop_id.indexOf("SFB_") == 0)) 
   else if(bOnLine && ((stop_id.indexOf("SF_") == 0) || (stop_id.indexOf("SFB_") == 0))) 
   {
-    let p = new Promise (function(resolve, reject){ 
+//      report("3304 "+ stop_id);
+    p = new Promise (function(resolve, reject){ 
     let tnf = 0;
     let tff = 0;
     let scode = "";
@@ -3307,6 +3310,7 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
     let bRail = true;
     checkLoadable(stop_id);
     /*
+ // ----------------------------   
     if(stop_id.indexOf("SFB_") == 0) 
     {
 //        scode = "1" + stop_id.substring(4);
@@ -3315,17 +3319,22 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
     }
     else scode = stop_id.substring(3);
 //    report("2796 scode = " + scode + ", stop = " + stop_id  + " " + bRail);
-    sSFMTA = "&svc=" + svcode + "&stop=" + scode;
-    if(SUB[53] != null)
+                     */
+    /*
+    sSFMTA = "&svc=" + svcode; // + "&stop=" + scode;
+    
+    if((SUB[53] != null)  && (typeof SUB[53].header !=='undefined'))
     {
-      let ctime = SUBTS[53];
-      if((ctime == null) || (dtime - ctime) > 450) // was 900
+      let ctime = getPBTime(SUB[53].header.timestamp); //SUBTS[53];
+      PredictionTime = SUB[53].header.timestamp;
+      if((ctime == null) || (dtime - ctime) > 900) // was 450
       {
         queueSUB(53);
       }
     }
     else queueSUB(53);
-   */
+ */                    
+// ----------------------------------   
  //    getRealTimeDataA(219, "&svc=" + svcode + "&stop=" + scode).then(function(fd) {
     let feed = SUB[53];
     feed = null;
@@ -3333,6 +3342,7 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
 //    let fd = SUB[53];
     if(feed != null)
     {
+        report("3338");
         /*
        try{
           feed = JSON.parse(fd);
@@ -3345,6 +3355,11 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
        */
        let p2 = serviceE.getScheduleByStop(stop_id, max_time, max_trips, tbase).then(function(t) {
           if(feed != null)
+          {
+            report("2371 feed = " + JSON.stringify(feed, null, 4));
+            combine(t, feed, "SF", "SF", "SF");              
+          }
+          /*
           {
 //            report("2940 " + bFeedError + " t = " + JSON.stringify(t, null, 4));
             if(bFeedError) resolve(t);
@@ -3378,7 +3393,6 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
                 if(aroute != null)
                 {
                 let destid = a0.MonitoredVehicleJourney.DestinationRef.substring(1);
-//                let tripid = "SF_" + a0.MonitoredVehicleJourney.FramedVehicleJourneyRef.DatedVehicleJourneyRef;
                 let headsign = a0.MonitoredVehicleJourney.DestinationName;
                 let veh_id = a0.MonitoredVehicleJourney.VehicleRef; // 1001
                 let tarrp = a0.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime;
@@ -3437,12 +3451,14 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
               } 
             }
           }
+          */
           else
           {
             report("2678 got here");  
           }
 //          report("2461 tnf = " + tnf + ", tff = " + tff);
-          if(bReport)report("t = \n" + JSON.stringify(t, null, 4));
+ //         if(bReport)
+              report("t = \n" + JSON.stringify(t, null, 4));
           resolve(t);
         }).catch(function(e) {
             reject("2872 " + e);
@@ -3451,7 +3467,7 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
     }
     else
     {
-//        report("3030 " + stop_id);
+ //       report("3456 " + stop_id);
       let p2 = serviceE.getScheduleByStop(stop_id, max_time, max_trips, tbase).then(function(t) {
              resolve(t);
          }).catch(function(e) {
@@ -3465,7 +3481,7 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
   }
   else if(bOnLine && (stop_id.indexOf("SF_") == 0))  
   {
-    let p = new Promise (function(resolve, reject){ 
+    p = new Promise (function(resolve, reject){ 
     let tnf = 0;
     let tff = 0;
     let svcode = "SF";
@@ -3620,7 +3636,7 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
   }
   else if(bOnLine && (stop_id.indexOf("CAL") == 0)) 
   {
-    let p = new Promise (function(resolve, reject){ 
+    p = new Promise (function(resolve, reject){ 
     let tnf = 0;
     let tff = 0;
     let scode = stop_id.substring(3);
@@ -3739,7 +3755,7 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
   }
   else if(bOnLine && (stop_id.indexOf("SMART") == 0)) 
   {
-    let p = new Promise (function(resolve, reject){ 
+    p = new Promise (function(resolve, reject){ 
     let tnf = 0;
     let tff = 0;
     let scode = stop_id.substring(5);
@@ -4438,7 +4454,7 @@ AssociateService.prototype.getPredictionByStop = function(stop_id, max_time, max
   {
     p = serviceE.getScheduleByStop(stop_id, max_time, max_trips, tbase);
   }
-  if(p == null) report("yes, p is null");
+  if(p == null) report("4443 yes, p is null");
   return(p);
 }
 
@@ -7352,7 +7368,7 @@ function combinetrip(t, feed, tripprefix, routeprefix, stopprefix)
     }
     else if(tripprefix == "B_")
     {
-       tAX = serviceE.getBARTTripForTrip(f1.id, f1);
+       let tAX = serviceE.getBARTTripForTrip(f1.id, f1);
        if(tAX != null)
        {
          trip_id = tAX.trip_id;
@@ -8814,11 +8830,18 @@ function queueSUB(i)
   {
     if(SUBTS[i] == null) SUBTS[i] = getTTime(); 
 //      report("8434 queue " + i );
+    let b = false;
+    let k = FindQueue.length;
+    let j = 0;
+    while(!b && (j<k))
+    {
+      if(i == FindQueue[j]) b = true;
+      else j += 1;
+    }
     if(FindQueue.length < 6)
     {
-      if(FindQueue.indexOf(i) == -1) 
+      if(!b)
       {
-//       report("8503 add to queue " + i );
         FindQueue.push(i);
         if((FindQueue.length == 1) ) //&& (FindRequest == null))
         {
@@ -8903,7 +8926,8 @@ function nextFindItem()
     else if(nn == 50) {n = 334; bUsePbworker = true; } // // MSL veh
     else if(nn == 51) {n = 335; bUsePbworker = true; } // // MSL alerts
     else if(nn == 52) {n = 336; bUsePbworker = true; } // // Metrolink alerts
-    else if(nn == 53) {n = 219; bIsJSON = true; bUsePbworker = false; s =sSFMTA;} // SF
+//    else if(nn == 53) {n = 219; bIsJSON = true; bUsePbworker = false; s =sSFMTA;} // SF
+    else if(nn == 53) {n = 220; bUsePbworker = true; s =sSFMTA;} // // SFMTA trips
     else if(nn == 54) {n = 203; bUsePbworker = true; } // // Metra trip
     else if(nn == 55) {n = 204; bUsePbworker = true; } // // Metra pos
     else if(nn == 56) {n = 205; bUsePbworker = true; } // // Metra alerts
@@ -9035,6 +9059,10 @@ function nextFindItem()
                 break;
               case 2:
                 console.log("6527:  " + m[1]);
+                break;
+              case 3:
+                reject(m[1]);
+                console.log("9064  " + m[1]);
                 break;
               default:
                 break;
@@ -10517,10 +10545,24 @@ function makeTripsForRouteOld(route, dff)
 
 function isDynamicBusRoute(route_id)
 {
-  let b = (route_id.indexOf("Y") == 0) || (route_id.indexOf("PV") == 0)  ||  (route_id.indexOf("RIPT") == 0) ||  (route_id.indexOf("CTAB") == 0) || (route_id.indexOf("SF_") == 0) || ((route_id.indexOf("SFB_") == 0) && (route_id.indexOf("SFF") != 0)) || (route_id.indexOf("MSLB") == 0)   || (route_id.indexOf("WMB") == 0)   || (route_id.indexOf("RTDB_") == 0)   ||
+  let b = (route_id.indexOf("Y") == 0) || 
+  (route_id.indexOf("PV") == 0)  ||  
+  (route_id.indexOf("RIPT") == 0) ||  
+  (route_id.indexOf("CTAB") == 0) || 
+//  (route_id.indexOf("SF_") == 0) || 
+  ((route_id.indexOf("SFB_") == 0) && (route_id.indexOf("SFF") != 0)) || 
+  (route_id.indexOf("MSLB") == 0)   || 
+  (route_id.indexOf("WMB") == 0)   || 
+  (route_id.indexOf("RTDB_") == 0)   ||
 //  (route_id.indexOf("MN") == 0) || || (route_id.indexOf("TRR") == 0)
-  (((route_id.indexOf("LAMB") == 0) && (route_id != "LAMB"))) || (route_id.indexOf("STM") == 0)  || (route_id.indexOf("TTC") == 0)||
-  (route_id.indexOf("ST") == 0) || (route_id.indexOf("Z_") == 0) || (route_id.indexOf("SNCF_") == 0) || (route_id.indexOf("DART_") == 0) || (route_id.indexOf("TTC_") == 0);
+  (((route_id.indexOf("LAMB") == 0) && (route_id != "LAMB"))) || 
+  (route_id.indexOf("STM") == 0)  || 
+  (route_id.indexOf("TTC") == 0)||
+  (route_id.indexOf("ST") == 0) || 
+  (route_id.indexOf("Z_") == 0) || 
+  (route_id.indexOf("SNCF_") == 0) || 
+  (route_id.indexOf("DART_") == 0) || 
+  (route_id.indexOf("TTC_") == 0);
   return(b);
 }
 
@@ -10810,7 +10852,7 @@ AssociateService.prototype.getScheduleByStop = function(stop_ida, max_time, max_
             let bsncf = false;
             let dateOK = isDateOK2(tr, a, ddf);
 //            if(dateOK)  
-//            if(a.trip_id.indexOf("SNCF_") == 0)
+//            if(a.trip_id.indexOf("SF") == 0)
 //            {
 //                report("7830 dateok = " + dateOK + " " + a.trip_id + " " + a.service_id + " " + tr.route_id + " " + Number(a.direction) + " " + dir);
 //            if((stop_id == "SF_17217"))  report("7830 dateok = " + dateOK + " " + a.trip_id + " " + ddf);
@@ -11382,6 +11424,7 @@ AssociateService.prototype.getPredictionByTripA = function(trip_id, tripcdate, t
                 let bp = false;
                 let t2 = null;
                 let k3 = stus.length;
+                let laststopdep = 0;
                 let i3 = 0;
                 for(i3 = 0; i3 < k3; i3++)
                 {
@@ -13915,8 +13958,8 @@ AssociateService.prototype.getScheduleByRoutesStop = function(routes, max_time, 
        i3 += 1; 
      }
 //     report("xcount = " + xcount);
-                  let iii = k2 - 1;
-                  i2 = 0;
+//                  let iii = k2 - 1;
+//                  i2 = 0;
      s += "]}"; // end of trips
     }
     s += "]} " //end of direction

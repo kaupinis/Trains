@@ -1215,7 +1215,7 @@ if((bWorkers) && (z.indexOf("htt") == 0)) // if(bWorkers)
 } 
 if(!bpbfirstinit) 
 {
-  loadScript("js/eo_pb.js").then(function () {
+  loadScript("js/eo_pb1.js").then(function () {
       eopb1 = new eo_pb();
       }).catch(function(e) {
           report("1223: " + e);
@@ -4724,7 +4724,7 @@ function updateTimeDisplay()
   let tdp = document.getElementById("tm").style.color;
   if(b && (timemode == 0)) tdp = "var(--Ccolor)";
   else tdp = "var(--TZcolor)";
-  if(b) document.getElementById("tm").innerHTML = "<br>" + timestring ;
+  if(b) document.getElementById("tm").innerHTML = "<br>" + timestring;
   else document.getElementById("tm").innerHTML = "<br>" + timestring + "<span style='font-size:10px;'>" + getTZString() + "</span>" ;
 }
 
@@ -5892,7 +5892,7 @@ if(DISPLAYTYPE == 0)
    }
    */
    if(p == null) report("5886 " + stop_id);
-   p.then(function(t){
+   else p.then(function(t){
 //   report("got here 333 " + JSON.stringify(t, null, 4));
     if(typeof t === 'undefined') 
     {
