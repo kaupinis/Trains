@@ -1,5 +1,7 @@
 // eo_pre.js
 
+//let stops_AM = [];
+
 class Carrier {
     id = null;
     calendar = null;
@@ -18,6 +20,10 @@ class Carrier {
         addRouteToService(r);
     }
     
+    addRoute(r) {
+        this.routes.push(r);
+        addRouteToService(r);
+    }
     addStops(a) {
         
     }
@@ -35,7 +41,7 @@ class Carriers {
     }
 }
 
-var stops_AM = [];
+//var stops_AM = [];
 
 function TCalendar()
 {

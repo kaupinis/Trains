@@ -54,7 +54,7 @@ function getAgencyName(id)
 async function lineproc3(data)
 {
   var a = data.split("\n"); // all trips data for the route
-  writeStream.write("var agencies = [\n");
+  writeStream.write("let agencies = [\n");
   var i3 = 0;
   var k3 = a.length-1;
   for(i3 = 0; i3 < k3; i3++) // for each agency
@@ -86,9 +86,9 @@ function lineproc1(row)
   }
   if(agency_id == "1230") route_name += " - Shore Line East"; 
   if(agency_id == "1238") route_name += " - MARC";
-  writeStream.write("var " + route_id + " = new TRoute(\"" + route_id + "\", \"" + route_name + "\");\n");
+  writeStream.write("let " + route_id + " = new TRoute(\"" + route_id + "\", \"" + route_name + "\");\n");
   writeStream.write(route_id + ".cal = AM_Cal;\n");
-  writeStream.write("AMR.addRouteToService(" + route_id + ");\n\n");
+  writeStream.write("AMR.addRoute(" + route_id + ");\n\n");
 }
 
 
@@ -107,7 +107,7 @@ var csvreader = fs.createReadStream('data/routes.csv').pipe(csv())
     .on('end', () => {
     console.log('CSV file successfully processed');
 //    writeStream.write("const SFMTARouteMapMap = [\n");
-
+    writeStream.write("AMR.setStops(stops_AM);\n\n");
     writeStream.on('finish', () => {
     console.log('wrote all data to file');
     writeStream.end();

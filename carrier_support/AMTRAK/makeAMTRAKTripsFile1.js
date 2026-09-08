@@ -291,7 +291,7 @@ async function lineproc5(dat, stps, d, route)
            var bComp = (route.route_name.indexOf("Connect") != -1) || (route.route_name.indexOf("Commuter") != -1);
            bComp = true
 
-           s = "var AMR_" + tid + " = new TTrip(\"AMR_" + tid + "\", \"" + route.route_name + " " + shortname + "\", " + dir + ", \"\");\n";
+           s = "let AMR_" + tid + " = new TTrip(\"AMR_" + tid + "\", \"" + route.route_name + " " + shortname + "\", " + dir + ", \"\");\n";
            s += "AMR_" + tid + ".headsign = \"" + headsign + "\";\n";
            s += "AMR_" + tid + ".tid = \"" + tid + "\";\n";
            s += "AMR_" + tid + ".short = \"" + shortname + "\";\n";

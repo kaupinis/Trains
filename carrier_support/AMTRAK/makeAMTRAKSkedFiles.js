@@ -1,7 +1,7 @@
 // makeSFMTASkedFiles
 
 
-var agency = [
+let agency = [
 "186","Adirondack Trailways",
 "99","Altamont Corridor Express",
 "1207","Alvand Transportation",
@@ -319,15 +319,16 @@ var routea = [];
 
 var writeStream = fs.createWriteStream('eo_AM_cal.js');
 writeStream.write("// eo_AM_cal.js " + d + "\n\n");
-writeStream.write("var AMR = new Carrier('AMR');\n");
+writeStream.write("let AMR = new Carrier('AMR');\n");
 writeStream.write("Carriers.addCarrier(AMR);\n");
 writeStream.write("AMR.stop_prefix = 'AMS';\n");
 writeStream.write("AMR.route_prefix = 'AMR';\n");
-writeStream.write("AMR.trip_prefix = 'AMR_';\n\n");
-writeStream.write("var AM_Cal = new TCalendar();\n");
+writeStream.write("AMR.trip_prefix = 'AMR_';\n");
+//writeStream.write("AMR.setStops(stops_AM); // stops defined in eo_trains33.js\n\n");
+writeStream.write("let AM_Cal = new TCalendar();\n");
+writeStream.write("AMR.setCalendar(AM_Cal);\n");
 writeStream.write("AM_Cal.lastUpdated = \"" + d + "\";\n");
 writeStream.write("AM_Cal.gtsftz = \"EasternTime\";\n\n");
-writeStream.write("AMR.setCalendar(AM_Cal);\n\n");
 var csvreader = fs.createReadStream('data/calendar.txt').pipe(csv())
     .on('data', (data) => lineproc1(data))
     .on('end', () => {
