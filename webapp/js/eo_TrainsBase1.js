@@ -424,6 +424,11 @@ const addMaximumScaleToMetaViewport = () => {
   }
 };
 
+function reload()
+{
+  window.location.reload();
+}
+
 const disableIosTextFieldZoom = addMaximumScaleToMetaViewport;
 
 //Check if it is an iPad, iPhone or iPod
