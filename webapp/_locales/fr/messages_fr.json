@@ -235,6 +235,8 @@
 "@7": "Consultez ces sites web pour obtenir des informations sur les billets, l'état du service, etc. :",
 "RailLines": "Lignes ferroviaires",
 "BusLines": "Lignes de bus",
-"Ferries": "Ferries"
+"Ferries": "Ferries",
+"time24": "Format horaire sur 24 heures",
+"Reload": "Recharger"
 }
 }
