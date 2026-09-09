@@ -235,6 +235,8 @@
 "@7": "Visita questi siti web per biglietti, stato del servizio e altre informazioni:",
 "RailLines": "Linee ferroviarie",
 "BusLines": "Linee di autobus",
-"Ferries": "Traghetti"
+"Ferries": "Traghetti",
+"time24": "Formato orario a 24 ore",
+"Reload": "Ricaricare"
 }
 }
