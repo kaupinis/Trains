@@ -235,6 +235,8 @@
         "@7": "Visit these web sites for ticket, status and other information:",
         "RailLines": "Rail Lines",
         "BusLines": "Bus Lines",
-        "Ferries": "Ferries"
+        "Ferries": "Ferries",
+        "time24": "24 Hour Time",
+        "Reload": "Reload"
     }
 }
