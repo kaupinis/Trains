@@ -7686,6 +7686,7 @@ else if(DISPLAYTYPE == 3)
     if(ii > 0) s += "<tr style=\'background-color:" + vcolor + ";line-height: 40px;\'><td colspan=3 class='datatable' style=\'background-color:" + vcolor + "\'>Change  (" + ctime + ")" + dx + "</td></tr>";
     s += "<tr style=\'background-color:" + ccolor + ";line-height: 40px;\'><td>Depart " + t1 + "</td><td>" + getStopNameFromID(leg.startid) + "</td><td></td></tr>";
     let hs = "";
+    let r4 = 0;
     if(leg.tripleg != null)
     {
     lastlegdestid = leg.destid;
@@ -7696,7 +7697,7 @@ else if(DISPLAYTYPE == 3)
     if(hs == "") hs = leg.direction_name + "  " + ridp + " " + leg.tripleg.trip_id;
     else hs = "to " + hs + ": \u00A0 \u00A0 " + leg.direction_name + "  " + ridp + " " + leg.tripleg.trip_id + " " + leg.tripleg.trip_name;
 //    report("leg.routeid = " + leg.routeid);
-    let r4 = Math.round(leg.dist /duration * 60);
+    r4 = Math.round(leg.dist /duration * 60);
     if(!isNaN(leg.routeid)) hs = "Bus " + leg.routeid + " " + hs;
     s += "<tr style=\'background-color:" + ccolor + ";line-height: 40px;\'><td colspan='3'> <span style=\'font-size: 9pt;color:#0000cc;\'><a href=\'javascript:showTrip(\"" + leg.tripleg.trip_id + "\", \"" + hs + "\", \"" + leg.startid + "\", \"" + leg.destid + "\", " + leg.starttime + ")\'>" + hs + "</a></span></td></tr>";
     s += "<tr style=\'background-color:" + ccolor + ";line-height: 40px;\'><td>Arrive " + t2 + "</td><td>" + getStopNameFromID(leg.destid) + "</td><td>(" + leg.dist + " mi, " + t3 + " min, " + r4 + " mi/hr)</td></tr>";
@@ -11634,6 +11635,7 @@ else if(DISPLAYTYPE == 3)
     if(ii > 0) s += "<tr style=\'line-height: 40px;border-width:2px;border-color:#000000\'><td colspan=3 class='datatable' style=\'border-width:4px;border-color:#000000\' >Change  (" + ctime + ")" + dx + "</td></tr>";
     s += "<tr ><td>Depart " + t1 + "</td><td>" + getStopNameFromID(leg.startid) + "</td><td></td></tr>";
     let hs = "";
+    let r4 = 0;
     if(leg.tripleg != null)
     {
     lastlegdestid = leg.destid;
@@ -11642,7 +11644,7 @@ else if(DISPLAYTYPE == 3)
     if(hs == "") hs = leg.direction_name + "  " + ridp + " " + leg.tripleg.trip_id;
     else hs = "to " + hs + ": \u00A0 \u00A0 " + leg.direction_name + "  " + ridp + " " + leg.tripleg.trip_id + "\n" +
        leg.tripleg.trip_name;
-    let r4 = Math.round(leg.dist /t3 * 60);
+    r4 = Math.round(leg.dist /t3 * 60);
     if(!isNaN(leg.routeid)) hs = "Bus " + leg.routeid + " " + hs;
     s += "<tr style=\'line-height: 40px;\'><td colspan='3'> <span style=\'font-size: 9pt;\'>" + hs + "</span></td></tr>";
     s += "<tr><td>Arrive " + t2 + "</td><td>" + getStopNameFromID(leg.destid) + "</td><td>(" + leg.dist + " mi, " + t3 + " min, " + r4 + " mi/hr)</td></tr>";

@@ -459,6 +459,38 @@ let SupportedCarriers = [
     routes: []
 },
 {
+    id: "MSL",
+    name: "Metro_SL",
+    stop_prefix: "MSL",
+    route_prefix:"MSL",
+    trip_prefix: "MSL",
+    sourcefile: "eo_MSL.js",
+    refstop: "MSL14753",
+    nlat: "",
+    nlon: "",
+    hasSked: true,
+    hasPred: false,
+    isDynamic: false,
+    loaded: false,
+    routes: []
+},
+{
+    id: "MSLB",
+    name: "Metro_SL_Bus",
+    stop_prefix: "MSLB",
+    route_prefix:"MSLB",
+    trip_prefix: "MSLB",
+    sourcefile: "eo_MSLB.js",
+    refstop: "MSLB14244",
+    nlat: "",
+    nlon: "",
+    hasSked: true,
+    hasPred: false,
+    isDynamic: true,
+    loaded: false,
+    routes: []
+},
+{
     id: "CAL",
     name: "Caltrain",
     stop_prefix: "CAL",

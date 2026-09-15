@@ -209,38 +209,7 @@ function checkLoadable(stop_id)
   else if(!bProc && (stop_id.indexOf("NJ") == 0) && !isCarrierLoaded("NJ")) {bProc = true; p = loadCarrier("NJ"); }
   else if(!bProc && (stop_id.indexOf("MSL") == 0))
   {
-    if(!isCarrierLoaded("MSL"))
-    {
-      bProc = true;
-      let u = "https://www.eightolives.com/docs/Trains/js/";
-//      if(eo_base.indexOf("http") != -1) u = eo_base + "Trains/js/";
-      p = new Promise(function(resolve, reject) {
-          let p1 = loadScript(u + "eo_MSL.js").then(function() {
-               let cccc = new Carrier1("MSL", "MSL", false, "");
-               cccc.addCarrier(cccc);
-               checkLastModified("eo_MSL.js", "MSL");
-               report("198 loaded carrier MSL");
-//               report("215 MSL = " + JSON.stringify(MSL, null, 4));
-               if((stop_id.indexOf("MSLB") == 0) && !isCarrierLoaded("MSLB"))
-               {
-                 let p2 = loadScript(u + "eo_MSLB.js").then(function() {
-                     report("202 loaded carrier MSLB");
-                     let cccc = new Carrier1("MSLB", "MSLB", false, "");
-                     cccc.addCarrier(cccc);
-                     checkLastModified("eo_MSLB.js", "MSLB");
-                     qupdateDisplay();
-                     resolve();
-                 }).catch(function(e){report(e);});
-               }
-               else
-               {
-                 qupdateDisplay();
-                 resolve();
-               }
-          }).catch(function(e){report(e);});
-      });
-    }
-    else if((stop_id.indexOf("MSLB") == 0) && !isCarrierLoaded("MSLB"))
+    if((stop_id.indexOf("MSLB") == 0) && !isCarrierLoaded("MSLB"))
     {
       bProc = true;
       let u = "https://www.eightolives.com/docs/Trains/js/";
@@ -254,6 +223,22 @@ function checkLoadable(stop_id)
           qupdateDisplay();
           resolve();
       }).catch(function(e){report(e);});
+      });
+    }
+    else if(!isCarrierLoaded("MSL"))
+    {
+      bProc = true;
+      let u = "https://www.eightolives.com/docs/Trains/js/";
+//      if(eo_base.indexOf("http") != -1) u = eo_base + "Trains/js/";
+      p = new Promise(function(resolve, reject) {
+          let p1 = loadScript(u + "eo_MSL.js").then(function() {
+               let cccc = new Carrier1("MSL", "MSL", false, "");
+               cccc.addCarrier(cccc);
+               checkLastModified("eo_MSL.js", "MSL");
+               console.log("198 loaded carrier MSL");
+               qupdateDisplay();
+               resolve();
+          }).catch(function(e){report("241 " + e);});
       });
     }
   }
@@ -10680,8 +10665,8 @@ AssociateService.prototype.getScheduleByStop = function(stop_ida, max_time, max_
     let k = ag.length;
     let i = 0;
     let r = [];
-//    report("10495 ag.length before = " + k);
-    if(checkLoadable(stop_id))
+//    report("10495 ag.length before = " + k + " " + ag.toString());
+    if(Carriers.isCarrierLoaded("MSL"))
     {
       for(i=0; i<k; i++)
       {
@@ -10689,7 +10674,12 @@ AssociateService.prototype.getScheduleByStop = function(stop_ida, max_time, max_
         ag = ag.concat(r);
       }
     }
-//````    report("10501 ag.length = " + ag.length + " " + ag);
+    else
+    {
+      checkLoadable(stop_id);  
+    }
+    
+//    report("10501 ag.length = " + ag.length + " " + ag.toString());
         
   }
   
@@ -11837,7 +11827,8 @@ AssociateService.prototype.getPredictionByTripA = function(trip_id, tripcdate, t
             if(SUB[54] != null)
             {
               let feed = SUB[54];
-              combinetrip(t, feed, "ME_", "ME_", "ME_");
+              if(typeof feed.entity !== 'undefined') 
+                combinetrip(t, feed, "ME_", "ME_", "ME_");
  //          let routes = getRoutesS(stop_id);
             }
             resolve(t);
@@ -13712,12 +13703,15 @@ AssociateService.prototype.getScheduleByRoutesStop = function(routes, max_time, 
  //  if(p9 != null) return(null);
  //  report("5715 " + ag[i0]);
    let tr = serviceE.getRouteS(ag[i0]);
+   if(tr != null)
+   {
    if((tr != null) && ((tr.route_id.indexOf("Y") == 0) || (tr.route_id.indexOf("CTAB") == 0) || (tr.route_id.indexOf("SFB") == 0) || (tr.route_id.indexOf("LAMB") == 0) || (tr.route_id.indexOf("RIPT") == 0)|| (tr.route_id.indexOf("DART_") == 0) ||(tr.route_id.indexOf("MSLB") == 0) || (tr.route_id.indexOf("WMB") == 0)|| (tr.route_id.indexOf("STMB") == 0) || (tr.route_id.indexOf("Z_") == 0)) || (tr.route_id.indexOf("SNCF_") == 0) && (tr.trips.length == 0))
    {
       if((typeof tr.fetched === 'undefined') || ( tr.fetched == false))
       {
         makeTripsForRoute(tr, ddf).catch(function(e) {});         
       }
+   }
    }
 //   if(tr.route_id.indexOf("CTA_") == 0)
 //   {
@@ -14156,7 +14150,7 @@ AssociateService.prototype.getVehiclesByRoutes = function(route_id)
    else queueSUB(20);
    
    let feed = SUB[20];
-   if(feed != null)
+   if((typeof feed != 'undefined') && (feed != null))
    {
      let kk = feed.entity.length;
      let ii = 0;
