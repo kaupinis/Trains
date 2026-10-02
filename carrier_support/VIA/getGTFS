@@ -1,0 +1,5 @@
+# getGTFS
+G_URL="https://www.viarail.ca/sites/all/files/gtfs/viarail.zip"
+G_PATH="VIA_GTFS.zip"
+$NODEJS_HOME/bin/node getGTFS.js $G_URL $G_PATH
+

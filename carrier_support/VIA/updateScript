@@ -1,0 +1,7 @@
+# update script for VIA gtfs files
+
+sed -e 's/^/VIA/' data/shapes.txt > data/shapes.csv
+sed -e 's/^/VIA/' data/stop_times.txt > data/stop_times.csv
+sed -e 's/^/VIA/' data/calendar_dates.txt > data/calendar_dates.csv
+
+

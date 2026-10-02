@@ -1,0 +1,5 @@
+# makeVIACompFile
+cat eo_pre.js eo_VIA_cal.js eo_VIA_routes.js makeVIACompFile.js > makeVIACompFile2.js
+$NODEJS_HOME/bin/node makeVIACompFile2.js 
+
+cat eo_VIA_cal.js eo_VIA_routes.js eo_VIA3.js > eo_VIA.js
