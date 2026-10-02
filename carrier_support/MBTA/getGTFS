@@ -1,0 +1,5 @@
+# getGTFS
+G_URL="https://cdn.mbta.com/MBTA_GTFS.zip"
+G_PATH="MBTA_GTFS.zip"
+$NODEJS_HOME/bin/node getGTFS.js $G_URL $G_PATH
+

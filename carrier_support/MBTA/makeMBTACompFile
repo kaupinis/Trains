@@ -1,0 +1,5 @@
+# makeMBTACompFile
+cat eo_pre.js eo_MBTA_cal.js makeMBTACompFile.js > makeMBTACompFile2.js
+$NODEJS_HOME/bin/node makeMBTACompFile2.js 
+
+cat eo_MBTA_cal.js eo_MBTA_Routes.js eo_MBTA3.js > eo_MBTA.js
