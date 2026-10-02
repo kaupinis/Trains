@@ -1,0 +1,5 @@
+# makeNJbusTripsFile
+cat eo_pre.js eo_NJBus_cal.js eo_NJBus_stops.js  makeTripsFile.js > makeTripsFile2.js
+$NODEJS_HOME/bin/node makeTripsFile2.js 
+
+cat eo_NJBus_cal.js eo_NJBus_stops.js  > eo_NJBus.js

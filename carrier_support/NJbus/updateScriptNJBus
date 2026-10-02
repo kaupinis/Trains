@@ -1,0 +1,8 @@
+# update script for NJBus Transit gtfs files
+
+sed -e 's/^/NJG/' data/shapes.txt > data/shapes.csv
+sed -e 's/^/NJB/' data/stop_times.txt > data/stop_times.csv
+sed -e 's/^/NJS/' data/calendar_dates.txt > data/calendar_dates.csv
+sed -e 's/^/NJR/' data/trips.txt > data/trips.csv
+
+

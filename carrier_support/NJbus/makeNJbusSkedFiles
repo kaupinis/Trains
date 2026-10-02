@@ -1,0 +1,3 @@
+# makeNJbusSkedFiles
+$NODEJS_HOME/bin/node makeNJbusSkedFiles.js 
+
