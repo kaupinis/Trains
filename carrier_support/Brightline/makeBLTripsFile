@@ -1,0 +1,5 @@
+# makeBARTTripsFile
+cat eo_pre.js eo_BL_cal.js eo_BL_routes.js makeBLTripsFile.js > makeBLTripsFile2.js
+$NODEJS_HOME/bin/node makeBLTripsFile2.js 
+
+cat eo_BL_cal.js eo_BL_routes.js eo_BL2.js > eo_BL.js

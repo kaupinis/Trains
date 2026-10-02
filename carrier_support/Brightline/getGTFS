@@ -1,0 +1,5 @@
+# getGTFS
+G_URL="http://feed.gobrightline.com/bl_gtfs.zip"
+G_PATH="Brightlinegtfs.zip"
+$NODEJS_HOME/bin/node getGTFS.js $G_URL $G_PATH
+
