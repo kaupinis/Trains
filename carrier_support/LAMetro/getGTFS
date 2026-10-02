@@ -1,0 +1,6 @@
+# getGTFS
+#G_URL="https://gitlab.com/LACMTA/gtfs_rail/raw/master/gtfs_rail.zip"
+G_URL="https://gitlab.com/LACMTA/gtfs_rail/-/raw/master/gtfs_rail.zip"
+G_PATH="LAMetrogtfs.zip"
+$NODEJS_HOME/bin/node getGTFS.js $G_URL $G_PATH
+

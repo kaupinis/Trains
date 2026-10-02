@@ -1,0 +1,10 @@
+# update script for LAM Transit gtfs files
+
+#sed -e 's/^/NJG/' shapes.txt > shapes.csv
+sed -e 's/^/LAM/' data/stop_times.txt > data/stop_times.csv
+#sed -e 's/^/NJS/' calendar_dates.txt > calendar_dates.csv
+sed -e 's/^/LAM/' data/trips.txt > data/trips1.csv
+sed 's/-/_/g' data/trips1.csv > data/trips.csv
+sed 's/-/_/g' data/calendar.txt > data/calendar.csv
+sed 's/-/_/g' data/calendar_dates.txt > data/calendar_dates.csv
+

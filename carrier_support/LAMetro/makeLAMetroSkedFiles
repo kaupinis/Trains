@@ -1,0 +1,3 @@
+# makeLAMetroSkedFiles
+$NODEJS_HOME/bin/node makeLAMetroSkedFiles.js  $1 $2
+

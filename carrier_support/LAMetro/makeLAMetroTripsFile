@@ -1,0 +1,6 @@
+# makeLAMetroTripsFiles
+cat eo_pre.js eo_LAM_cal.js  makeLAMetroTripsFile1.js > makeLAMetroTripsFile.js
+$NODEJS_HOME/bin/node makeLAMetroTripsFile.js $1 $2
+FNAME="eo_LAMetro.js";
+cat eo_LAM_cal.js eo_LA.js eo_LAMetroTrips.js > $FNAME
+
