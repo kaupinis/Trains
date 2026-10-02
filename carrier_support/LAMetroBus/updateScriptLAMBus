@@ -1,0 +1,14 @@
+# update script for LAMBus Transit gtfs files
+
+#sed -e 's/^/NJG/' shapes.txt > shapes.csv
+sed 's/-/_/g' data/stop_times.txt > data/stop_times1.txt
+sed -e 's/^/LAMB_/' data/stop_times1.txt > data/stop_times.csv
+#sed -e 's/^/NJS/' calendar_dates.txt > calendar_dates.csv
+sed 's/-/_/g' data/trips.txt > data/trips1.csv
+sed -e 's/^/LAMB_/' data/trips1.csv > data/trips.csv
+sed -e 's/^/LAMB_/' data/trips.txt > data/trips2.csv
+sed 's/-/_/g' data/calendar.txt > data/calendar.csv
+sed 's/-/_/g' data/calendar_dates.txt > data/calendar_dates.csv
+sed 's/"//g' data/routes.txt > data/routes1.txt
+
+

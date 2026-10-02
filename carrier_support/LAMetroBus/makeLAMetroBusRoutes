@@ -1,0 +1,4 @@
+# makeLAMetroBusRoutes
+cat eo_pre.js eo_LAMB_cal.js  makeLAMetroBusRoutes.js > makeLAMetroBusRoutes2.js
+$NODEJS_HOME/bin/node makeLAMetroBusRoutes2.js 
+

@@ -1,0 +1,5 @@
+# getGTFS
+G_URL="https://gitlab.com/LACMTA/gtfs_bus/raw/master/gtfs_bus.zip"
+G_PATH="LAMetroBusgtfs.zip"
+$NODEJS_HOME/bin/node getGTFS.js $G_URL $G_PATH
+
