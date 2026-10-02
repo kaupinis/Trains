@@ -1,0 +1,114 @@
+// eo_SEPTA_Routes.js
+
+let SEP_AIR = new TRoute("SEP_AIR","SEPTA Airport Line");
+SEP_AIR.common_name = "SEPTA Airport Line";
+SEP_AIR.cal = SEPTA_Cal;
+SEP_AIR.routem = "SEP_AIR";
+SEP_AIR.stop_ids = ["SEP_90401","SEP_90402","SEP_90403","SEP_90404","SEP_90405","SEP_90406","SEP_90004",
+"SEP_90005","SEP_90006","SEP_90007"];
+SEPTA.addRoute(SEP_AIR);
+
+let SEP_CHE = new TRoute("SEP_CHE","SEPTA Chestnut Hill East Line");
+SEP_CHE.common_name = "SEPTA Chestnut Hill East Line";
+SEP_CHE.cal = SEPTA_Cal;
+SEP_CHE.routem = "SEP_CHE";
+SEP_CHE.stop_ids = ["SEP_90004","SEP_90005","SEP_90006","SEP_90007","SEP_90009","SEP_90712","SEP_90713",
+"SEP_90714","SEP_90715","SEP_90716","SEP_90717","SEP_90718","SEP_90719","SEP_90720"];
+SEPTA.addRoute(SEP_CHE);
+
+let SEP_CHW = new TRoute("SEP_CHW","SEPTA Chestnut Hill West Line");
+SEP_CHW.common_name = "SEPTA Chestnut Hill West Line";
+SEP_CHW.cal = SEPTA_Cal;
+SEP_CHW.routem = "SEP_CHW";
+SEP_CHW.stop_ids = ["SEP_90801","SEP_90802","SEP_90803","SEP_90804","SEP_90805","SEP_90806","SEP_90807",
+"SEP_90808","SEP_90809","SEP_90810","SEP_90004","SEP_90005","SEP_90006","SEP_90007"];
+SEPTA.addRoute(SEP_CHW);
+
+let SEP_LAN = new TRoute("SEP_LAN","SEPTA Lansdale_Doylestown Line");
+SEP_LAN.common_name = "SEPTA Lansdale_Doylestown Line";
+SEP_LAN.cal = SEPTA_Cal;
+SEP_LAN.routem = "SEP_LAN";
+SEP_LAN.stop_ids = ["SEP_90004","SEP_90005","SEP_90006","SEP_90007","SEP_90008","SEP_90009","SEP_90406",
+"SEP_90407","SEP_90408","SEP_90409","SEP_90410","SEP_90411","SEP_90523","SEP_90524","SEP_90525",
+"SEP_90526","SEP_90527","SEP_90528","SEP_90529","SEP_90530","SEP_90531","SEP_90539","SEP_90532",
+"SEP_90533","SEP_90534","SEP_90535","SEP_90536","SEP_90537","SEP_90538"];
+SEPTA.addRoute(SEP_LAN);
+
+let SEP_MED = new TRoute("SEP_MED","SEPTA Media/Elwyn Line");
+SEP_MED.common_name = "SEPTA Media/Elwyn Line";
+SEP_MED.cal = SEPTA_Cal;
+SEP_MED.routem = "SEP_MED";
+SEP_MED.stop_ids = ["SEP_90300","SEP_90301","SEP_90302","SEP_90303","SEP_90304","SEP_90305","SEP_90306",
+"SEP_90307","SEP_90308","SEP_90309","SEP_90310","SEP_90311","SEP_90312","SEP_90313","SEP_90314",
+"SEP_90406","SEP_90004","SEP_90005","SEP_90006","SEP_90007"];
+SEPTA.addRoute(SEP_MED);
+
+let SEP_FOX = new TRoute("SEP_FOX","SEPTA Fox Chase Line");
+SEP_FOX.common_name = "SEPTA Fox Chase Line";
+SEP_FOX.cal = SEPTA_Cal;
+SEP_FOX.routem = "SEP_FOX";
+SEP_FOX.stop_ids = ["SEP_90004","SEP_90005","SEP_90006","SEP_90007","SEP_90009","SEP_90811","SEP_90812",
+"SEP_90813","SEP_90814","SEP_90815"];
+SEPTA.addRoute(SEP_FOX);
+
+let SEP_NOR = new TRoute("SEP_NOR","SEPTA Manayunk_Norristown Line");
+SEP_NOR.common_name = "SEPTA Manayunk_Norristown Line";
+SEP_NOR.cal = SEPTA_Cal;
+SEP_NOR.routem = "SEP_NOR";
+SEP_NOR.stop_ids = ["SEP_90004","SEP_90005","SEP_90006","SEP_90007","SEP_90008","SEP_90218","SEP_90219",
+"SEP_90220","SEP_90221","SEP_90222","SEP_90223","SEP_90224","SEP_90225","SEP_90226","SEP_90227",
+"SEP_90228"];
+SEPTA.addRoute(SEP_NOR);
+
+let SEP_PAO = new TRoute("SEP_PAO","SEPTA Paoli_Thorndale Line");
+SEP_PAO.common_name = "SEPTA Paoli_Thorndale Line";
+SEP_PAO.cal = SEPTA_Cal;
+SEP_PAO.routem = "SEP_PAO";
+SEP_PAO.stop_ids = ["SEP_90501","SEP_90502","SEP_90503","SEP_90504","SEP_90505","SEP_90506","SEP_90507",
+"SEP_90508","SEP_90509","SEP_90510","SEP_90511","SEP_90512","SEP_90513","SEP_90514","SEP_90515",
+"SEP_90516","SEP_90517","SEP_90518","SEP_90519","SEP_90520","SEP_90521","SEP_90522","SEP_90004",
+"SEP_90005","SEP_90006","SEP_90007"];
+SEPTA.addRoute(SEP_PAO);
+
+let SEP_CYN = new TRoute("SEP_CYN","SEPTA Cynwyd Line");
+SEP_CYN.common_name = "SEPTA Cynwyd Line";
+SEP_CYN.cal = SEPTA_Cal;
+SEP_CYN.routem = "SEP_CYN";
+SEP_CYN.stop_ids = ["SEP_90001","SEP_90002","SEP_90003","SEP_90004","SEP_90005"];
+SEPTA.addRoute(SEP_CYN);
+
+let SEP_TRE = new TRoute("SEP_TRE","SEPTA Trenton Line");
+SEP_TRE.common_name = "SEPTA Trenton Line";
+SEP_TRE.cal = SEPTA_Cal;
+SEP_TRE.routem = "SEP_TRE";
+SEP_TRE.stop_ids = ["SEP_90701","SEP_90702","SEP_90703","SEP_90704","SEP_90705","SEP_90706","SEP_90707",
+"SEP_90708","SEP_90709","SEP_90710","SEP_90711","SEP_90004","SEP_90005","SEP_90006","SEP_90007"];
+SEPTA.addRoute(SEP_TRE);
+
+let SEP_WAR = new TRoute("SEP_WAR","SEPTA Warminster Line");
+SEP_WAR.common_name = "SEPTA Warminster Line";
+SEP_WAR.cal = SEPTA_Cal;
+SEP_WAR.routem = "SEP_WAR";
+SEP_WAR.stop_ids = ["SEP_90004","SEP_90005","SEP_90006","SEP_90007","SEP_90009","SEP_90407","SEP_90408",
+"SEP_90409","SEP_90410","SEP_90411","SEP_90412","SEP_90413","SEP_90414","SEP_90415","SEP_90416",
+"SEP_90417"];
+SEPTA.addRoute(SEP_WAR);
+
+let SEP_WIL = new TRoute("SEP_WIL","SEPTA Wilmington_Newark Line");
+SEP_WIL.common_name = "SEPTA Wilmington_Newark Line";
+SEP_WIL.cal = SEPTA_Cal;
+SEP_WIL.routem = "SEP_WIL";
+SEP_WIL.stop_ids = ["SEP_90201","SEP_90202","SEP_90203","SEP_90204","SEP_90205","SEP_90206","SEP_90207",
+"SEP_90208","SEP_90209","SEP_90210","SEP_90211","SEP_90212","SEP_90213","SEP_90214","SEP_90215",
+"SEP_90216","SEP_90217","SEP_90406","SEP_90004","SEP_90005","SEP_90006","SEP_90007"];
+SEPTA.addRoute(SEP_WIL);
+
+let SEP_WTR = new TRoute("SEP_WTR","SEPTA West Trenton Line");
+SEP_WTR.common_name = "SEPTA West Trenton Line";
+SEP_WTR.cal = SEPTA_Cal;
+SEP_WTR.routem = "SEP_WTR";
+SEP_WTR.stop_ids = ["SEP_90406","SEP_90004","SEP_90005","SEP_90006","SEP_90007","SEP_90407","SEP_90408",
+"SEP_90409","SEP_90410","SEP_90315","SEP_90316","SEP_90317","SEP_90318","SEP_90319","SEP_90320",
+"SEP_90321","SEP_90322","SEP_90323","SEP_90324","SEP_90325","SEP_90326","SEP_90327"];
+SEPTA.addRoute(SEP_WTR);
+

@@ -1,0 +1,5 @@
+# makeSEPTATripsFile
+cat eo_pre.js eo_SEPTA_cal.js eo_SEPTA_Routes.js makeSEPTATripsFile.js > makeSEPTATripsFile2.js
+$NODEJS_HOME/bin/node makeSEPTATripsFile2.js 
+
+cat eo_SEPTA_cal.js eo_SEPTA_Routes.js eo_SEPTA2.js > eo_SEPTA.js

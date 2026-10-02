@@ -1,0 +1,6 @@
+# getGTFS
+#https://github.com/septadev/GTFS
+G_URL="https://www3.septa.org/developer/gtfs_public.zip"
+G_PATH="SEPTA_GTFS.zip"
+$NODEJS_HOME/bin/node getGTFS.js $G_URL $G_PATH
+
