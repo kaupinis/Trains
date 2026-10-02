@@ -1,0 +1,9 @@
+# update script for BART gtfs files
+
+#sed -e 's/^/ME_/' shapes.txt > shapes.csv
+#sed 's/-//' stop_times.txt > stop_times.csv
+#sed -e 's/^/NJS/' calendar_dates.txt > calendar_dates.csv
+#sed 's/-//' trips.txt > trips.csv
+sed -e 's/^/B_/' data/trips.txt > data/trips.csv
+
+

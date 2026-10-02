@@ -1,0 +1,5 @@
+# getGTFS
+G_URL="https://www.bart.gov/dev/schedules/google_transit.zip"
+G_PATH="BART_GTFS.zip"
+$NODEJS_HOME/bin/node getGTFS.js $G_URL $G_PATH
+

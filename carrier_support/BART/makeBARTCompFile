@@ -1,0 +1,14 @@
+# makeBARTCompFile
+cat eo_pre.js eo_BART_cal.js eo_BART_routes.js makeBARTCompFile.js > makeBARTCompFile2.js
+#$NODEJS_HOME/bin/node makeBARTCompFile2.js $1
+#cat eo_BART_cal.js eo_BART_routes.js eo_BART3.js > eo_BART.js
+
+$NODEJS_HOME/bin/node makeBARTCompFile2.js 0
+$NODEJS_HOME/bin/node makeBARTCompFile2.js 1
+$NODEJS_HOME/bin/node makeBARTCompFile2.js 2
+$NODEJS_HOME/bin/node makeBARTCompFile2.js 3
+$NODEJS_HOME/bin/node makeBARTCompFile2.js 4
+$NODEJS_HOME/bin/node makeBARTCompFile2.js 5
+
+cat eo_BART_cal.js eo_BART_routes.js eo_BART3_0.js eo_BART3_1.js eo_BART3_2.js eo_BART3_3.js eo_BART3_4.js eo_BART3_5.js > eo_BART.js
+
