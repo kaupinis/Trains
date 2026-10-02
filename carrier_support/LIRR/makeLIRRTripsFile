@@ -1,0 +1,5 @@
+# makeLIRRTripsFile
+cat eo_pre.js eo_LIRR_cal.js eo_LIRR_routes.js makeLIRRTripsFile.js > makeLIRRTripsFile2.js
+$NODEJS_HOME/bin/node makeLIRRTripsFile2.js 
+
+cat eo_LIRR_cal.js eo_LIRR_routes.js eo_LIRR2.js > eo_LIRR.js

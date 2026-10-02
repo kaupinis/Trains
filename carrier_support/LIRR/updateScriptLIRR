@@ -1,0 +1,16 @@
+# update script for LIRR gtfs files
+
+#sed -e 's/^/ME_/' data/shapes.txt > data/shapes.csv
+sed 's/"//g' data/stop_times.txt > data/stop_times.csv
+#sed 's/-//' data/stop_times.txt > data/stop_times.csv
+#sed -e 's/^/NJS/' calendar_dates.txt > calendar_dates.csv
+sed 's/"//g' data/trips.txt > data/trips1.txt
+sed -e 's/^/LI/' data/trips1.txt > data/trips.csv
+#sed 's/ //g' data/calendar.txt > data/calendar.csv
+#cp data/calendar_dates.txt data/calendar_dates.csv
+
+sort data/calendar_dates.txt > data/calendar_dates1.txt
+cat eo_pre1.txt data/calendar_dates1.txt > data/calendar_dates.csv
+
+
+

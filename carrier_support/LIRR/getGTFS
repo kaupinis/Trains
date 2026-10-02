@@ -1,0 +1,7 @@
+# getGTFS
+#G_URL="http://web.mta.info/developers/data/lirr/google_transit.zip"
+#G_URL="https://rrgtfsfeeds.s3.amazonaws.com/gtfslirr.zip"
+G_URL="https://rrgtfsfeeds.s3.amazonaws.com/google_transit.zip"
+G_PATH="LIRRgtfs.zip"
+$NODEJS_HOME/bin/node getGTFS.js $G_URL $G_PATH
+
