@@ -1,0 +1,5 @@
+# makeNJrailTripsFile
+cat eo_pre.js eo_NJrail_cal.js eo_NJrail_routes.js makeNJrailTripsFile.js > makeNJrailTripsFile2.js
+$NODEJS_HOME/bin/node makeNJrailTripsFile2.js 
+
+cat eo_NJrail_cal.js eo_NJrail_routes.js eo_NJtables.js eo_NJrail2.js > eo_NJ1.js
