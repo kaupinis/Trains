@@ -1,0 +1,5 @@
+# makeMNRSkedFiles  startdate  enddate
+cat eo_pre.js makeMNRSkedFiles.js > makeMNRSkedFiles2.js
+$NODEJS_HOME/bin/node makeMNRSkedFiles2.js $1 $2
+
+
